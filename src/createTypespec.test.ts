@@ -18,6 +18,8 @@ import {
 
 beforeEach(() => {
   const dir = path.resolve(__dirname, "../CreateTypespecProject")
+  console.log(dir)
+
   if (fs.existsSync(dir)) {
     for (const file of fs.readdirSync(dir)) {
       const filePath = path.resolve(dir, file)
