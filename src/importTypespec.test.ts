@@ -60,3 +60,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
   await closeVscode(page)
 })
+
+test("test openvscode", async ({ launch }) => {
+  launch({ workspacePath: "./" })
+})
