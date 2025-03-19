@@ -23,5 +23,5 @@ steps:
 
   - script: |
       echo "Running tests..."
-      yarn test || echo "Test command failed!"
+      yarn vitest --root src || echo "Test command failed!"
     displayName: "Run tests with logging"
