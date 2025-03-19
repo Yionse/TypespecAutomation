@@ -12,16 +12,10 @@ steps:
 
   - script: |
       echo "Installing Yarn globally..."
-      npm i -g yarn
-    displayName: "Install Yarn"
-
-  - script: |
-      echo "Clearing cache and reinstalling dependencies..."
-      yarn cache clean
-      yarn install --force
-    displayName: "Force install dependencies"
+      npm i
+    displayName: "Install Dependencies"
 
   - script: |
       echo "Running tests..."
-      yarn vitest --root src || echo "Test command failed!"
+      npm run test || echo "Test command failed!"
     displayName: "Run tests with logging"
