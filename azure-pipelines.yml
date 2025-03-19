@@ -16,5 +16,7 @@ steps:
     displayName: "Install Node.js"
 
   - script: |
+      npm i -g yarn
+      yarn
       npm list
     displayName: "npm install"
