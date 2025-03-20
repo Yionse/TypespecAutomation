@@ -1,5 +1,5 @@
 trigger:
-  - master
+  - test/pipeline-windows
 
 pool:
   vmImage: windows-latest
@@ -30,6 +30,9 @@ steps:
       ls
     displayName: "show folder list"
   - script: |
+      git config --global user.email "v-zhangtianc@microsoft.com"
+      git config --global user.name "Yionse"
+      git pull --rebase origin test/pipeline-windows
       git add .
       git commit -m 'update'
       git push -u origin test/pipeline-windows
