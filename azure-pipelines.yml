@@ -17,7 +17,7 @@ steps:
 
   - script: |
       echo "Running tests..."
-      echo "Test command failed!"
+      npm run test
     displayName: "Run tests with logging"
     continueOnError: true
   - script: |
