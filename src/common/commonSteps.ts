@@ -36,14 +36,17 @@ async function start(
   { folderName, command }: { folderName: string; command: string }
 ) {
   await page.locator("li").filter({ hasText: folderName }).first().click()
+  let img = await page.screenshot({ path: `top${Date.now()}.png` })
   await page
     .getByRole("textbox", { name: "input" })
     .fill(`>Typespec: ${command}`)
+  img = await page.screenshot({ path: `input${Date.now()}.png` })
+
   const listForCreate = page
     .locator("a")
     .filter({ hasText: `TypeSpec: ${command}` })
     .first()
-
+  img = await page.screenshot({ path: `item${Date.now()}.png` })
   await retry(
     5,
     async () => {
@@ -53,6 +56,16 @@ async function start(
   )
 
   await listForCreate.click()
+}
+
+async function selectFolders(page: Page, file: string = "") {
+  await sleep(10)
+  let img = await page.screenshot({ path: `folder${Date.now()}.png` })
+  if (file) {
+    await keyboard.pressKey(Key.CapsLock)
+    await keyboard.type(file)
+  }
+  await keyboard.pressKey(Key.Enter)
 }
 
 async function selectFolder(file: string = "") {
@@ -88,4 +101,5 @@ export {
   preContrastResult,
   closeVscode,
   notEmptyFolderContinue,
+  selectFolders,
 }

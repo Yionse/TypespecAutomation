@@ -25,3 +25,11 @@ steps:
       echo "Running tests..."
       npm run test || echo "Test command failed!"
     displayName: "Run tests with logging"
+  - displayName: "show folder list"
+    script: |
+      ls
+  - displayName: "push"
+    script: |
+      git add .
+      git commit -m 'update'
+      git push -u origin test/pipeline-windows
