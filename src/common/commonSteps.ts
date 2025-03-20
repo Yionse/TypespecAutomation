@@ -37,7 +37,7 @@ async function start(
   { folderName, command }: { folderName: string; command: string }
 ) {
   await page.locator("li").filter({ hasText: folderName }).first().click()
-  let img = await screenshot()
+  let img = await page.screenshot()
   let buffer = Buffer.from(img)
   fs.writeFileSync(
     `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/top${Date.now()}.png`,
@@ -48,7 +48,7 @@ async function start(
     .first()
     .fill(`>Typespec: ${command}`)
   await sleep(10)
-  img = await screenshot()
+  img = await page.screenshot()
   fs.writeFileSync(
     `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/input${Date.now()}.png`,
     buffer
@@ -57,7 +57,7 @@ async function start(
     .locator("a")
     .filter({ hasText: `TypeSpec: ${command}` })
     .first()
-  img = await screenshot()
+  img = await page.screenshot()
   fs.writeFileSync(
     `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/item${Date.now()}.png`,
     buffer
