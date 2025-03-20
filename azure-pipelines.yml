@@ -16,12 +16,6 @@ steps:
     displayName: "Install Dependencies"
 
   - script: |
-      echo "echo"
-      pwd
-      ls
-    displayName: "test"
-
-  - script: |
       echo "Running tests..."
       npm run test || echo "Test command failed!"
     displayName: "Run tests with logging"
