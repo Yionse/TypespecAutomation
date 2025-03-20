@@ -20,6 +20,8 @@ steps:
       npm run test
     displayName: "Run tests with logging"
     continueOnError: true
+    env:
+      BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
   - script: |
       ls
     displayName: "show folder list"
