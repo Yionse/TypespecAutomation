@@ -6,7 +6,6 @@ import {
   preContrastResult,
   closeVscode,
   notEmptyFolderContinue,
-  selectFolders,
 } from "./common/commonSteps"
 import { preCheckExtension, sleep, test } from "./common/utils"
 import fs from "node:fs"
@@ -38,16 +37,12 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await page
-    .getByLabel(/Extensions/)
-    .first()
-    .click()
   await sleep(10)
   await start(page, {
     folderName: "CreateTypespecProject",
     command: "Create Typespec Project",
   })
-  await selectFolders(page)
+  await selectFolder()
   await selectTemplate(page, "Generic REST API")
   await inputProjectName(page)
   await selectEmitters(page, ["OpenAPI"])
