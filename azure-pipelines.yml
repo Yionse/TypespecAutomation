@@ -25,14 +25,10 @@ steps:
   - script: |
       ls
     displayName: "show folder list"
-  - script: |
-      git remote -v
-      git branch
-      git config --global user.email "v-zhangtianc@microsoft.com"
-      git config --global user.name "Yionse"
-      git checkout -b test/pipeline-windows-new
-      git add .
-      git commit -m 'update'
-
-      git push -u origin test/pipeline-windows-new
-    displayName: "Configure Git and Push"
+  - task: PublishBuildArtifacts@1
+    inputs:
+      path: "$(Build.ArtifactStagingDirectory)" # 这里是你的图片存储路径
+      artifact: "screenshots" # 这个名字可以自定义，在 Artifacts 里作为文件夹名称
+      publishLocation: "Container"
+      includePatterns: "**/*.png" # 只上传 PNG 文件
+    displayName: "Publish screenshots to Artifacts"
