@@ -2,6 +2,7 @@ import { Page } from "@playwright/test"
 import { retry, sleep } from "./utils"
 import { keyboard, Key } from "@nut-tree/nut-js"
 import fs from "node:fs"
+import screenshot from "screenshot-desktop"
 
 async function preContrastResult(
   page: Page,
@@ -36,29 +37,29 @@ async function start(
   { folderName, command }: { folderName: string; command: string }
 ) {
   await page.locator("li").filter({ hasText: folderName }).first().click()
-  let img = await page.screenshot({
-    path: `${
-      process.env.BUILD_ARTIFACT_STAGING_DIRECTORY
-    }/top${Date.now()}.png`,
-  })
+  let img = await screenshot()
+  let buffer = Buffer.from(img)
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/top${Date.now()}.png`,
+    buffer
+  )
   await page
     .getByRole("textbox", { name: "input" })
     .fill(`>Typespec: ${command}`)
-  img = await page.screenshot({
-    path: `${
-      process.env.BUILD_ARTIFACT_STAGING_DIRECTORY
-    }/input${Date.now()}.png`,
-  })
-
+  img = await screenshot()
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/input${Date.now()}.png`,
+    buffer
+  )
   const listForCreate = page
     .locator("a")
     .filter({ hasText: `TypeSpec: ${command}` })
     .first()
-  img = await page.screenshot({
-    path: `${
-      process.env.BUILD_ARTIFACT_STAGING_DIRECTORY
-    }/item${Date.now()}.png`,
-  })
+  img = await screenshot()
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/item${Date.now()}.png`,
+    buffer
+  )
   await retry(
     5,
     async () => {
@@ -72,11 +73,13 @@ async function start(
 
 async function selectFolders(page: Page, file: string = "") {
   await sleep(10)
-  let img = await page.screenshot({
-    path: `${
-      process.env.BUILD_ARTIFACT_STAGING_DIRECTORY
-    }/folder${Date.now()}.png`,
-  })
+  let img = await screenshot()
+  let buffer = Buffer.from(img)
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/folder${Date.now()}.png`,
+    buffer
+  )
+
   if (file) {
     await keyboard.pressKey(Key.CapsLock)
     await keyboard.type(file)

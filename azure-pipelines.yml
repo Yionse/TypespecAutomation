@@ -11,24 +11,18 @@ steps:
     displayName: "Install Node.js"
 
   - script: |
-      echo "Installing Yarn globally..."
-      npm i
-    displayName: "Install Dependencies"
-
-  - script: |
       echo "Running tests..."
+      npm i
       npm run test
-    displayName: "Run tests with logging"
+    displayName: "Run tests"
     continueOnError: true
     env:
       BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
-  - script: |
-      ls
-    displayName: "show folder list"
+
   - task: PublishBuildArtifacts@1
     inputs:
-      path: "$(Build.ArtifactStagingDirectory)" # 这里是你的图片存储路径
-      artifact: "screenshots" # 这个名字可以自定义，在 Artifacts 里作为文件夹名称
+      path: "$(Build.ArtifactStagingDirectory)"
+      artifact: "screenshots"
       publishLocation: "Container"
-      includePatterns: "**/*.png" # 只上传 PNG 文件
+      includePatterns: "**/*.png"
     displayName: "Publish screenshots to Artifacts"
