@@ -31,9 +31,9 @@ steps:
 
       git checkout -b test/pipeline-windows
       git branch
-
+      git stash push
       git pull origin test/pipeline-windows --rebase
-
+      git stash pop
       git add .
       git commit -m 'update'
 
