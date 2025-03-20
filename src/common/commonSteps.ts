@@ -45,6 +45,7 @@ async function start(
   )
   await page
     .getByRole("textbox", { name: "input" })
+    .first()
     .fill(`>Typespec: ${command}`)
   await sleep(10)
   img = await screenshot()
