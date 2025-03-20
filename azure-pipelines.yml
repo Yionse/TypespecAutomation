@@ -28,14 +28,9 @@ steps:
       git branch
       git config --global user.email "v-zhangtianc@microsoft.com"
       git config --global user.name "Yionse"
-
-      git checkout -b test/pipeline-windows
-      git branch
-      git stash push
-      git pull origin test/pipeline-windows --rebase
-      git stash pop
+      git checkout -b test/pipeline-windows-new
       git add .
       git commit -m 'update'
 
-      git push origin test/pipeline-windows
+      git push -u origin test/pipeline-windows-new
     displayName: "Configure Git and Push"
