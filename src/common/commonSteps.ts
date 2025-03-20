@@ -49,6 +49,7 @@ async function start(
     .fill(`>Typespec: ${command}`)
   await sleep(10)
   img = await page.screenshot()
+  buffer = Buffer.from(img)
   fs.writeFileSync(
     `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/input${Date.now()}.png`,
     buffer
@@ -58,6 +59,7 @@ async function start(
     .filter({ hasText: `TypeSpec: ${command}` })
     .first()
   img = await page.screenshot()
+  buffer = Buffer.from(img)
   fs.writeFileSync(
     `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/item${Date.now()}.png`,
     buffer
