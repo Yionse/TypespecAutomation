@@ -36,17 +36,29 @@ async function start(
   { folderName, command }: { folderName: string; command: string }
 ) {
   await page.locator("li").filter({ hasText: folderName }).first().click()
-  let img = await page.screenshot({ path: `top${Date.now()}.png` })
+  let img = await page.screenshot({
+    path: `${
+      process.env.BUILD_ARTIFACT_STAGING_DIRECTORY
+    }/top${Date.now()}.png`,
+  })
   await page
     .getByRole("textbox", { name: "input" })
     .fill(`>Typespec: ${command}`)
-  img = await page.screenshot({ path: `input${Date.now()}.png` })
+  img = await page.screenshot({
+    path: `${
+      process.env.BUILD_ARTIFACT_STAGING_DIRECTORY
+    }/input${Date.now()}.png`,
+  })
 
   const listForCreate = page
     .locator("a")
     .filter({ hasText: `TypeSpec: ${command}` })
     .first()
-  img = await page.screenshot({ path: `item${Date.now()}.png` })
+  img = await page.screenshot({
+    path: `${
+      process.env.BUILD_ARTIFACT_STAGING_DIRECTORY
+    }/item${Date.now()}.png`,
+  })
   await retry(
     5,
     async () => {
@@ -60,7 +72,11 @@ async function start(
 
 async function selectFolders(page: Page, file: string = "") {
   await sleep(10)
-  let img = await page.screenshot({ path: `folder${Date.now()}.png` })
+  let img = await page.screenshot({
+    path: `${
+      process.env.BUILD_ARTIFACT_STAGING_DIRECTORY
+    }/folder${Date.now()}.png`,
+  })
   if (file) {
     await keyboard.pressKey(Key.CapsLock)
     await keyboard.type(file)

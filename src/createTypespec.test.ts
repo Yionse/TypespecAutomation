@@ -34,8 +34,6 @@ beforeEach(() => {
 })
 
 test("CreateTypespec-Generic REST API", async ({ launch }) => {
-  console.log(process.env.BUILD_ARTIFACT_STAGING_DIRECTORY)
-
   const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
   const { page } = await launch({
     workspacePath,
