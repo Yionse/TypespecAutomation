@@ -8,7 +8,7 @@ import {
   notEmptyFolderContinue,
   selectFolders,
 } from "./common/commonSteps"
-import { preCheckExtension, test } from "./common/utils"
+import { preCheckExtension, sleep, test } from "./common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
@@ -38,6 +38,11 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+  await page
+    .getByLabel(/Extensions/)
+    .first()
+    .click()
+  await sleep(10)
   await start(page, {
     folderName: "CreateTypespecProject",
     command: "Create Typespec Project",
