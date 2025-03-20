@@ -29,7 +29,8 @@ steps:
       git config --global user.email "v-zhangtianc@microsoft.com"
       git config --global user.name "Yionse"
 
-      git checkout test/pipeline-windows
+      git checkout -b test/pipeline-windows
+      git branch
 
       git pull origin test/pipeline-windows --rebase
 
