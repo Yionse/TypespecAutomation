@@ -72,14 +72,19 @@ async function start(
 }
 
 async function selectFolders(page: Page, file: string = "") {
-  await sleep(10)
   let img = await screenshot()
   let buffer = Buffer.from(img)
   fs.writeFileSync(
     `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/folder${Date.now()}.png`,
     buffer
   )
-
+  await sleep(10)
+  img = await screenshot()
+  buffer = Buffer.from(img)
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/folder-two${Date.now()}.png`,
+    buffer
+  )
   if (file) {
     await keyboard.pressKey(Key.CapsLock)
     await keyboard.type(file)
