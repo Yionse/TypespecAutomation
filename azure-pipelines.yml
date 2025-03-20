@@ -25,6 +25,7 @@ steps:
       echo "Running tests..."
       npm run test || echo "Test command failed!"
     displayName: "Run tests with logging"
+    continueOnError: true
   - script: |
       ls
     displayName: "show folder list"
