@@ -46,6 +46,7 @@ async function start(
   await page
     .getByRole("textbox", { name: "input" })
     .fill(`>Typespec: ${command}`)
+  await sleep(10)
   img = await screenshot()
   fs.writeFileSync(
     `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/input${Date.now()}.png`,
