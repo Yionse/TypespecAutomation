@@ -33,16 +33,12 @@ steps:
       git config --global user.email "v-zhangtianc@microsoft.com"
       git config --global user.name "Yionse"
 
-      # 确保切换到目标分支
       git checkout test/pipeline-windows
 
-      # 拉取最新代码，避免冲突
       git pull origin test/pipeline-windows --rebase
 
-      # 添加并提交更改
       git add .
       git commit -m 'update'
 
-      # 再次确保是正确的分支
       git push origin test/pipeline-windows
     displayName: "Configure Git and Push"
