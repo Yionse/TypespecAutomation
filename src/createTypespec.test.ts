@@ -16,21 +16,21 @@ import {
   selectTemplate,
 } from "./common/createSteps"
 
-beforeEach(() => {
-  const dir = path.resolve(__dirname, "../CreateTypespecProject")
-  console.log(__dirname, "dirname")
-  console.log(dir, "dir")
+// beforeEach(() => {
+//   const dir = path.resolve(__dirname, "../CreateTypespecProject")
+//   console.log(__dirname, "dirname")
+//   console.log(dir, "dir")
 
-  if (fs.existsSync(dir)) {
-    for (const file of fs.readdirSync(dir)) {
-      const filePath = path.resolve(dir, file)
-      fs.rmSync(filePath, { recursive: true, force: true })
-    }
-  } else {
-    throw new Error("Failed to find workspace directory")
-  }
-  preCheckExtension()
-})
+//   if (fs.existsSync(dir)) {
+//     for (const file of fs.readdirSync(dir)) {
+//       const filePath = path.resolve(dir, file)
+//       fs.rmSync(filePath, { recursive: true, force: true })
+//     }
+//   } else {
+//     throw new Error("Failed to find workspace directory")
+//   }
+//   preCheckExtension()
+// })
 
 test("CreateTypespec-Generic REST API", async ({ launch }) => {
   const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
