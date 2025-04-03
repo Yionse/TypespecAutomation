@@ -1,5 +1,5 @@
 import { beforeEach } from "vitest"
-import { test } from "../common/utils"
+import { screenshotSelf, test } from "../common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
@@ -44,6 +44,8 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+  await screenshotSelf("importStart.png", "create")
+
   await installExtensionForFile(
     page,
     path.resolve(__dirname, "../../extension.vsix")

@@ -32,3 +32,11 @@ jobs:
           publishLocation: "Container"
           includePatterns: "images/**/*.png"
         displayName: "Publish screenshots to Artifacts"
+      - script: |
+          echo "Run Linux"
+        condition: eq(variables['Agent.OS'], 'Linux')
+        displayName: "Run Linux"
+      - script: |
+          echo "Run Windows"
+        condition: eq(variables['Agent.OS'], 'Windows')
+        displayName: "Run Windows"

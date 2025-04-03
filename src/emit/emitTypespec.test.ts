@@ -44,6 +44,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+  await screenshotSelf("emitStart.png", "create")
 
   await installExtensionForFile(
     page,

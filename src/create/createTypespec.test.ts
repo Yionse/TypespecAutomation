@@ -33,6 +33,7 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+  await screenshotSelf("createStart.png", "create")
   await installExtensionForFile(
     page,
     path.resolve(__dirname, "../../extension.vsix")
