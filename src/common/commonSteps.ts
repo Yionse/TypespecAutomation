@@ -183,15 +183,18 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
   await screenshotSelf(`${+new Date()}.png`, "import")
 
   await selectFolder(fullFilePath)
+  console.log("还没结束1")
 
   await screenshotSelf(`${+new Date()}.png`, "import")
 
   await sleep(3)
   await page.keyboard.press("Enter")
+  console.log("还没结束2")
+
   await retry(
     10,
     async () => {
-      const installed = await page.getByText(/Completed installing/).first()
+      const installed = page.getByText(/Completed installing/).first()
       await screenshotSelf(`${+new Date()}.png`, "import")
       return (await installed.count()) > 0
     },
