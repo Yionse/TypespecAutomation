@@ -187,19 +187,17 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
 
   await screenshotSelf(`${+new Date()}.png`, "import")
 
-  await sleep(3)
-  await page.keyboard.press("Enter")
   console.log("还没结束2")
 
   await retry(
-    10,
+    20,
     async () => {
       const installed = page.getByText(/Completed installing/).first()
       await screenshotSelf(`${+new Date()}.png`, "import")
       return (await installed.count()) > 0
     },
     "Failed to find installed status",
-    3
+    1
   )
   await screenshotSelf(`${+new Date()}测试.png`, "import")
   console.log("还没结束3")
