@@ -55,13 +55,15 @@ async function start(
   { folderName, command }: { folderName: string; command: string }
 ) {
   await page.locator("li").filter({ hasText: folderName }).first().click()
-  await screenshotSelf(`${+new Date()}.png`, "import")
+  await screenshotSelf(`top.png`, "import")
+
+  await screenshotSelf(`top1.png`, "import")
 
   await page
     .getByRole("textbox", { name: "input" })
     .first()
     .fill(`>Typespec: ${command}`)
-  await screenshotSelf(`${+new Date()}.png`, "import")
+  await screenshotSelf(`top2.png`, "import")
 
   let listForCreate: Locator
   await retry(
@@ -77,7 +79,7 @@ async function start(
   )
 
   await listForCreate!.click()
-  await screenshotSelf(`${+new Date()}.png`, "import")
+  await screenshotSelf(`top4.png`, "import")
 }
 
 /**

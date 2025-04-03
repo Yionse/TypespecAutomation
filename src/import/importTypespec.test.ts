@@ -50,6 +50,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     page,
     path.resolve(__dirname, "../../extension.vsix")
   )
+  console.log("执行start咯")
 
   await start(page, {
     folderName: "importTypespecProjectOpenApi3",
