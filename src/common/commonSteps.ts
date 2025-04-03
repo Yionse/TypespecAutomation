@@ -55,13 +55,13 @@ async function start(
   { folderName, command }: { folderName: string; command: string }
 ) {
   await page.locator("li").filter({ hasText: folderName }).first().click()
-  await screenshotSelf("7.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
 
   await page
     .getByRole("textbox", { name: "input" })
     .first()
     .fill(`>Typespec: ${command}`)
-  await screenshotSelf("8.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
 
   let listForCreate: Locator
   await retry(
@@ -77,7 +77,7 @@ async function start(
   )
 
   await listForCreate!.click()
-  await screenshotSelf("9.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
 }
 
 /**
@@ -91,9 +91,9 @@ async function selectFolder(file: string = "") {
       await keyboard.pressKey(Key.CapsLock)
     }
     await keyboard.type(file)
-    await screenshotSelf("12.png", "import")
+    await screenshotSelf(`${+new Date()}.png`, "import")
   }
-  await screenshotSelf("10.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
 
   await keyboard.pressKey(Key.Enter)
 }
@@ -115,7 +115,8 @@ async function notEmptyFolderContinue(page: Page) {
     "Failed to find yes button",
     1
   )
-  await screenshotSelf("11.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
+
   await yesBtn!.click()
 }
 
@@ -151,7 +152,8 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     .getByRole("tab", { name: /Extensions/ })
     .locator("a")
     .click()
-  await screenshotSelf("2.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
+
   let moreItem: Locator
   await retry(
     10,
@@ -163,25 +165,24 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     1
   )
   await moreItem!.click()
-  await screenshotSelf("3.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
 
   let fromInstall: Locator
   await retry(
     10,
     async () => {
       fromInstall = page.getByLabel(/Install from VSIX/).first()
-      await screenshotSelf(`${+new Date()}.png`, "import")
       return (await fromInstall.count()) > 0
     },
     "Failed to find install from VSIX item",
     1
   )
   await fromInstall!.click()
-  await screenshotSelf("4.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
 
   await selectFolder(fullFilePath)
 
-  await screenshotSelf("5.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
 
   await sleep(3)
   await page.keyboard.press("Enter")
@@ -189,12 +190,13 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     10,
     async () => {
       const installed = await page.getByText(/Completed installing/).first()
+      await screenshotSelf(`${+new Date()}.png`, "import")
       return (await installed.count()) > 0
     },
     "Failed to find installed status",
     3
   )
-  await screenshotSelf("6.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
 
   await page
     .getByRole("tab", { name: /Explorer/ })

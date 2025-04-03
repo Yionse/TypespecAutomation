@@ -44,7 +44,8 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf("1.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
+
   await installExtensionForFile(
     page,
     path.resolve(__dirname, "../../extension.vsix")
@@ -63,7 +64,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await screenshotSelf("13.png", "import")
+  await screenshotSelf(`${+new Date()}.png`, "import")
 
   await closeVscode(page)
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
