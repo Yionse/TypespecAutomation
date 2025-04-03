@@ -11,7 +11,7 @@ import {
   emitSelectProject,
   emitSelectType,
 } from "../common/emiSteps"
-import { screenshotSelf, test } from "../common/utils"
+import { test } from "../common/utils"
 import path from "node:path"
 import fs from "node:fs"
 

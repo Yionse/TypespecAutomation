@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test"
-import { retry, screenshotSelf, sleep } from "./utils"
+import { retry, sleep } from "./utils"
 import { keyboard, Key } from "@nut-tree-fork/nut-js"
 import fs from "node:fs"
 
@@ -55,15 +55,11 @@ async function start(
   { folderName, command }: { folderName: string; command: string }
 ) {
   await page.locator("li").filter({ hasText: folderName }).first().click()
-  await screenshotSelf(`top.png`, "import")
-
-  await screenshotSelf(`top1.png`, "import")
 
   await page
     .getByRole("textbox", { name: "input" })
     .first()
     .fill(`>Typespec: ${command}`)
-  await screenshotSelf(`top2.png`, "import")
 
   let listForCreate: Locator
   await retry(
@@ -79,7 +75,6 @@ async function start(
   )
 
   await listForCreate!.click()
-  await screenshotSelf(`top4.png`, "import")
 }
 
 /**
@@ -93,9 +88,7 @@ async function selectFolder(file: string = "") {
       await keyboard.pressKey(Key.CapsLock)
     }
     await keyboard.type(file)
-    await screenshotSelf(`${+new Date()}.png`, "import")
   }
-  await screenshotSelf(`${+new Date()}.png`, "import")
 
   await keyboard.pressKey(Key.Enter)
 }
@@ -117,7 +110,6 @@ async function notEmptyFolderContinue(page: Page) {
     "Failed to find yes button",
     1
   )
-  await screenshotSelf(`${+new Date()}.png`, "import")
 
   await yesBtn!.click()
 }
@@ -154,7 +146,6 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     .getByRole("tab", { name: /Extensions/ })
     .locator("a")
     .click()
-  await screenshotSelf(`${+new Date()}.png`, "import")
 
   let moreItem: Locator
   await retry(
@@ -167,7 +158,6 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     1
   )
   await moreItem!.click()
-  await screenshotSelf(`${+new Date()}.png`, "import")
 
   let fromInstall: Locator
   await retry(
@@ -180,33 +170,23 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     1
   )
   await fromInstall!.click()
-  await screenshotSelf(`${+new Date()}.png`, "import")
 
   await selectFolder(fullFilePath)
-  console.log("还没结束1")
-
-  await screenshotSelf(`${+new Date()}.png`, "import")
-
-  console.log("还没结束2")
 
   await retry(
     20,
     async () => {
       const installed = page.getByText(/Completed installing/).first()
-      await screenshotSelf(`${+new Date()}.png`, "import")
       return (await installed.count()) > 0
     },
     "Failed to find installed status",
     1
   )
-  await screenshotSelf(`${+new Date()}测试.png`, "import")
-  console.log("还没结束3")
 
   await page
     .getByRole("tab", { name: /Explorer/ })
     .locator("a")
     .click()
-  console.log("还没结束4")
 }
 
 async function closeVscode(page: Page) {

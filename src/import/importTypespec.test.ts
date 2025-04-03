@@ -1,5 +1,5 @@
 import { beforeEach } from "vitest"
-import { screenshotSelf, test } from "../common/utils"
+import { test } from "../common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
@@ -44,7 +44,6 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf(`${+new Date()}.png`, "import")
 
   await installExtensionForFile(
     page,
@@ -65,7 +64,6 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await screenshotSelf(`${+new Date()}.png`, "import")
 
   await closeVscode(page)
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
