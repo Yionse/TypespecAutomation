@@ -170,6 +170,7 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     10,
     async () => {
       fromInstall = page.getByLabel(/Install from VSIX/).first()
+      await screenshotSelf(`${+new Date()}.png`, "import")
       return (await fromInstall.count()) > 0
     },
     "Failed to find install from VSIX item",
