@@ -198,12 +198,14 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     "Failed to find installed status",
     3
   )
-  await screenshotSelf(`${+new Date()}.png`, "import")
+  await screenshotSelf(`${+new Date()}测试.png`, "import")
+  console.log("还没结束3")
 
   await page
     .getByRole("tab", { name: /Explorer/ })
     .locator("a")
     .click()
+  console.log("还没结束4")
 }
 
 async function closeVscode(page: Page) {
