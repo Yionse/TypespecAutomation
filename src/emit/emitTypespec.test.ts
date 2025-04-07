@@ -16,24 +16,10 @@ import path from "node:path"
 import fs from "node:fs"
 
 beforeEach(() => {
-  const dir = path.resolve(
-    __dirname,
-    "../../EmitTypespecProject/Azure.AI.TextTranslation/tsp-output"
-  )
+  const dir = path.resolve(__dirname, "../../EmitTypespecProject/tsp-output")
   if (fs.existsSync(dir)) {
     for (const file of fs.readdirSync(dir)) {
       const filePath = path.resolve(dir, file)
-      fs.rmSync(filePath, { recursive: true, force: true })
-    }
-  }
-
-  const dirs = path.resolve(
-    __dirname,
-    "../../EmitTypespecProject/Azure.AI.DocumentTranslation/tsp-output"
-  )
-  if (fs.existsSync(dirs)) {
-    for (const file of fs.readdirSync(dirs)) {
-      const filePath = path.resolve(dirs, file)
       fs.rmSync(filePath, { recursive: true, force: true })
     }
   }
@@ -71,7 +57,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   //   "Failed to emit project Successful",
   //   [10, 3]
   // )
-  // await closeVscode(page)
+  await closeVscode(page)
 
   // await contrastResult(
   //   ["openapi.3.0.yaml"],

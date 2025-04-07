@@ -2,10 +2,10 @@ trigger:
   - test/pipeline-windows
   - master
 jobs:
-  # - template: test-job-template.yml
-  #   parameters:
-  #     jobName: "TestCreate"
-  #     testScript: "test:create"
+  - template: test-job-template.yml
+    parameters:
+      jobName: "TestCreate"
+      testScript: "test:create"
 
   # - template: test-job-template.yml
   #   parameters:
