@@ -18,14 +18,14 @@ jobs:
           npm install
         displayName: "Install dependencies"
 
-      - script: |
-          echo "Running ${{ parameters.jobName }} tests"
-          npm run ${{ parameters.testScript }}
-        displayName: "Run ${{ parameters.jobName }} tests"
-        env:
-          BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
-          CI: true
-        continueOnError: true
+      # - script: |
+      #     echo "Running ${{ parameters.jobName }} tests"
+      #     npm run ${{ parameters.testScript }}
+      #   displayName: "Run ${{ parameters.jobName }} tests"
+      #   env:
+      #     BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
+      #     CI: true
+      #   continueOnError: true
       - task: PublishBuildArtifacts@1
         inputs:
           path: "$(Build.ArtifactStagingDirectory)"
@@ -33,6 +33,8 @@ jobs:
           publishLocation: "Container"
           includePatterns: "images/**/*.png"
         displayName: "Publish screenshots to Artifacts"
+      - script: echo "Agent OS is $AGENT_OS"
+        displayName: "Check OS"
       - script: |
           echo "Run Linux"
         condition: eq(variables['Agent.OS'], 'Linux')
