@@ -183,9 +183,6 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
 }
 
 async function closeVscode(page: Page) {
-  if (process.env.CI) {
-    return
-  }
   await page.keyboard.press("Alt+F4")
 }
 
