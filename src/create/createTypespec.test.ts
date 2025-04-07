@@ -39,7 +39,7 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf("createStart.png", "create")
+  await screenshotSelf(`createStart${+new Date()}.png`, "create")
   await installExtensionForFile(
     page,
     path.resolve(__dirname, "../../extension.vsix")
@@ -78,7 +78,7 @@ test("CreateTypespec-Generic REST API2", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf("createStart.png", "create")
+  await screenshotSelf(`createStart${+new Date()}.png`, "create")
   await installExtensionForFile(
     page,
     path.resolve(__dirname, "../../extension.vsix")
@@ -117,7 +117,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf("emitStart.png", "create")
+  await screenshotSelf(`emitStart${+new Date()}.png`, "create")
 
   await installExtensionForFile(
     page,
@@ -157,7 +157,7 @@ test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf("emitStart.png", "create")
+  await screenshotSelf(`emitStart${+new Date()}.png`, "create")
 
   await installExtensionForFile(
     page,
@@ -200,7 +200,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf("importStart.png", "create")
+  await screenshotSelf(`importStart${+new Date()}.png`, "create")
 
   await installExtensionForFile(
     page,
@@ -232,7 +232,7 @@ test("ImportTypespecFromOpenApi3 2", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf("importStart.png", "create")
+  await screenshotSelf(`importStart${+new Date()}.png`, "create")
 
   await installExtensionForFile(
     page,
