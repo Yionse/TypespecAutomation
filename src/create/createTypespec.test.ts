@@ -113,6 +113,151 @@ test("CreateTypespec-Generic REST API2", async ({ launch }) => {
     workspacePath
   )
 })
+
+test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
+  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const { page } = await launch({
+    workspacePath,
+  })
+  await screenshotSelf("emitStart.png", "create")
+
+  await installExtensionForFile(
+    page,
+    path.resolve(__dirname, "../../extension.vsix")
+  )
+  await start(page, {
+    folderName: "EmitTypespecProject",
+    command: "Emit from Typespec",
+  })
+  // await emitSelectProject(page, "TextTranslation")
+
+  await page
+    .getByRole("option", { name: "Choose another emitter" })
+    .locator("a")
+    .click()
+
+  await emitSelectType(page, "OpenAPI Document")
+
+  await emitSelectLanguageForOpenapi(page)
+
+  await preContrastResult(
+    page,
+    "OpenAPI3...Succeeded",
+    "Failed to emit project Successful",
+    [10, 3]
+  )
+  await closeVscode(page)
+
+  await contrastResult(
+    ["openapi.3.0.yaml"],
+    path.resolve(workspacePath, "./tsp-output/@typespec/openapi3")
+  )
+})
+
+test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {
+  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const { page } = await launch({
+    workspacePath,
+  })
+  await screenshotSelf("emitStart.png", "create")
+
+  await installExtensionForFile(
+    page,
+    path.resolve(__dirname, "../../extension.vsix")
+  )
+  await start(page, {
+    folderName: "EmitTypespecProject",
+    command: "Emit from Typespec",
+  })
+  // await emitSelectProject(page, "TextTranslation")
+
+  await page
+    .getByRole("option", { name: "Choose another emitter" })
+    .locator("a")
+    .click()
+
+  await emitSelectType(page, "OpenAPI Document")
+
+  await emitSelectLanguageForOpenapi(page)
+
+  await preContrastResult(
+    page,
+    "OpenAPI3...Succeeded",
+    "Failed to emit project Successful",
+    [10, 3]
+  )
+  await closeVscode(page)
+
+  await contrastResult(
+    ["openapi.3.0.yaml"],
+    path.resolve(workspacePath, "./tsp-output/@typespec/openapi3")
+  )
+})
+
+test("ImportTypespecFromOpenApi3", async ({ launch }) => {
+  const workspacePath = path.resolve(
+    __dirname,
+    "../../importTypespecProjectOpenApi3"
+  )
+  const { page } = await launch({
+    workspacePath,
+  })
+  await screenshotSelf("importStart.png", "create")
+
+  await installExtensionForFile(
+    page,
+    path.resolve(__dirname, "../../extension.vsix")
+  )
+
+  await start(page, {
+    folderName: "importTypespecProjectOpenApi3",
+    command: "Import TypeSpec from Openapi3",
+  })
+  await selectFolder()
+  await notEmptyFolderContinue(page)
+  await selectFolder("openapi.3.0.yaml")
+  await preContrastResult(
+    page,
+    "OpenAPI succeeded",
+    "Failed to import project successfully",
+    [10, 3]
+  )
+  await closeVscode(page)
+  await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
+})
+
+test("ImportTypespecFromOpenApi3 2", async ({ launch }) => {
+  const workspacePath = path.resolve(
+    __dirname,
+    "../../importTypespecProjectOpenApi3"
+  )
+  const { page } = await launch({
+    workspacePath,
+  })
+  await screenshotSelf("importStart.png", "create")
+
+  await installExtensionForFile(
+    page,
+    path.resolve(__dirname, "../../extension.vsix")
+  )
+
+  await start(page, {
+    folderName: "importTypespecProjectOpenApi3",
+    command: "Import TypeSpec from Openapi3",
+  })
+  await selectFolder()
+  await notEmptyFolderContinue(page)
+  await selectFolder("openapi.3.0.yaml")
+  await preContrastResult(
+    page,
+    "OpenAPI succeeded",
+    "Failed to import project successfully",
+    [10, 3]
+  )
+  await closeVscode(page)
+  await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
+})
+
 // test("CreateTypespec-Special scenarios-button", async ({ launch }) => {
 //   const { page } = await launch({ workspacePath: "./test" })
 //   await installExtension(page)
