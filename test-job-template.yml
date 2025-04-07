@@ -33,7 +33,7 @@ jobs:
           publishLocation: "Container"
           includePatterns: "images/**/*.png"
         displayName: "Publish screenshots to Artifacts"
-      - script: echo "Agent OS is $AGENT_OS"
+      - script: echo Agent OS is %AGENT_OS%
         displayName: "Check OS"
       - script: |
           echo "Run Linux"
