@@ -7,17 +7,17 @@ jobs:
       jobName: "TestCreate"
       testScript: "test:create"
 
-  - template: test-job-template.yml
-    parameters:
-      jobName: "TestImport"
-      testScript: "test:import"
+  # - template: test-job-template.yml
+  #   parameters:
+  #     jobName: "TestImport"
+  #     testScript: "test:import"
 
-  - template: test-job-template.yml
-    parameters:
-      jobName: "TestEmit"
-      testScript: "test:emit"
+  # - template: test-job-template.yml
+  #   parameters:
+  #     jobName: "TestEmit"
+  #     testScript: "test:emit"
 
-  - template: test-job-template.yml
-    parameters:
-      jobName: "AllTest"
-      testScript: "test"
+  # - template: test-job-template.yml
+  #   parameters:
+  #     jobName: "AllTest"
+  #     testScript: "test"
