@@ -6,6 +6,7 @@ parameters:
 
 jobs:
   - job: ${{ parameters.jobName }}
+    # condition: eq(variables['Agent.OS'], 'Windows_NT')
     pool:
       vmImage: "windows-latest"
     steps:

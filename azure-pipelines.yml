@@ -18,7 +18,6 @@ jobs:
   #     testScript: "test:emit"
 
   - template: test-job-template.yml
-    condition: eq(variables['Agent.OS'], 'Windows_NT')
     parameters:
       jobName: "AllTest"
       testScript: "test"
