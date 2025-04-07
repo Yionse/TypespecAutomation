@@ -1,7 +1,7 @@
 trigger:
   - test/pipeline-windows
   - master
-job:
+jobs:
   pool:
     vmImage: "windows-latest"
   steps:
