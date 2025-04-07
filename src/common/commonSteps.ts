@@ -175,6 +175,7 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     "Failed to find installed status",
     1
   )
+  await sleep(5)
   await page
     .getByRole("tab", { name: /Explorer/ })
     .locator("a")
