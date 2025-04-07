@@ -8,7 +8,6 @@ jobs:
   - job: ${{ parameters.jobName }}
     pool:
       vmImage: "windows-latest"
-    condition: eq(variables['Agent.OS'], 'Windows_NT')
     steps:
       - task: NodeTool@0
         inputs:
