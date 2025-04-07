@@ -51,19 +51,51 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     path.resolve(__dirname, "../../extension.vsix")
   )
 
-  // await start(page, {
-  //   folderName: "importTypespecProjectOpenApi3",
-  //   command: "Import TypeSpec from Openapi3",
-  // })
-  // await selectFolder()
-  // await notEmptyFolderContinue(page)
-  // await selectFolder("openapi.3.0.yaml")
-  // await preContrastResult(
-  //   page,
-  //   "OpenAPI succeeded",
-  //   "Failed to import project successfully",
-  //   [10, 3]
-  // )
+  await start(page, {
+    folderName: "importTypespecProjectOpenApi3",
+    command: "Import TypeSpec from Openapi3",
+  })
+  await selectFolder()
+  await notEmptyFolderContinue(page)
+  await selectFolder("openapi.3.0.yaml")
+  await preContrastResult(
+    page,
+    "OpenAPI succeeded",
+    "Failed to import project successfully",
+    [10, 3]
+  )
+  await closeVscode(page)
+  await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
+})
+
+test("ImportTypespecFromOpenApi3 2", async ({ launch }) => {
+  const workspacePath = path.resolve(
+    __dirname,
+    "../../importTypespecProjectOpenApi3"
+  )
+  const { page } = await launch({
+    workspacePath,
+  })
+  await screenshotSelf("importStart.png", "create")
+
+  await installExtensionForFile(
+    page,
+    path.resolve(__dirname, "../../extension.vsix")
+  )
+
+  await start(page, {
+    folderName: "importTypespecProjectOpenApi3",
+    command: "Import TypeSpec from Openapi3",
+  })
+  await selectFolder()
+  await notEmptyFolderContinue(page)
+  await selectFolder("openapi.3.0.yaml")
+  await preContrastResult(
+    page,
+    "OpenAPI succeeded",
+    "Failed to import project successfully",
+    [10, 3]
+  )
   await closeVscode(page)
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
