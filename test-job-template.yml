@@ -35,11 +35,10 @@ jobs:
         displayName: "Publish screenshots to Artifacts"
       - script: echo Agent OS is %AGENT_OS%
         displayName: "Check OS"
-      - script: |
-          echo "Run Linux"
+      - script: echo This is Linux
+        displayName: "Linux step"
         condition: eq(variables['Agent.OS'], 'Linux')
-        displayName: "Run Linux"
-      - script: |
-          echo "Run Windows"
-        condition: eq(variables['Agent.OS'], 'Windows')
-        displayName: "Run Windows"
+
+      - script: echo This is Windows
+        displayName: "Windows step"
+        condition: eq(variables['Agent.OS'], 'Windows_NT')
