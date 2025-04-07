@@ -40,7 +40,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     folderName: "EmitTypespecProject",
     command: "Emit from Typespec",
   })
-  await emitSelectProject(page, "TextTranslation")
+  // await emitSelectProject(page, "TextTranslation")
 
   await page
     .getByRole("option", { name: "Choose another emitter" })
@@ -80,7 +80,7 @@ test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {
     folderName: "EmitTypespecProject",
     command: "Emit from Typespec",
   })
-  await emitSelectProject(page, "TextTranslation")
+  // await emitSelectProject(page, "TextTranslation")
 
   await page
     .getByRole("option", { name: "Choose another emitter" })
