@@ -25,23 +25,23 @@ jobs:
           CI: true
         continueOnError: true
 
-      # - script: |
-      #     echo "Running emit tests"
-      #     npm run test:emit
-      #   displayName: "Run emit tests"
-      #   env:
-      #     BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
-      #     CI: true
-      #   continueOnError: true
+      - script: |
+          echo "Running emit tests"
+          npm run test:emit
+        displayName: "Run emit tests"
+        env:
+          BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
+          CI: true
+        continueOnError: true
 
-      # - script: |
-      #     echo "Running import tests"
-      #     npm run test:import
-      #   displayName: "Run import tests"
-      #   env:
-      #     BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
-      #     CI: true
-      #   continueOnError: true
+      - script: |
+          echo "Running import tests"
+          npm run test:import
+        displayName: "Run import tests"
+        env:
+          BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
+          CI: true
+        continueOnError: true
 
       - task: PublishBuildArtifacts@1
         inputs:

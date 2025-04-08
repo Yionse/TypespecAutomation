@@ -64,7 +64,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
 
@@ -96,6 +96,6 @@ test("ImportTypespecFromOpenApi3 2", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
