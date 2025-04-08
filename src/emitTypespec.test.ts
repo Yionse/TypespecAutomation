@@ -5,18 +5,18 @@ import {
   installExtensionForFile,
   preContrastResult,
   start,
-} from "../common/commonSteps"
+} from "./common/commonSteps"
 import {
   emitSelectLanguageForOpenapi,
   emitSelectProject,
   emitSelectType,
-} from "../common/emiSteps"
-import { screenshotSelf, test } from "../common/utils"
+} from "./common/emiSteps"
+import { screenshotSelf, test } from "./common/utils"
 import path from "node:path"
 import fs from "node:fs"
 
 beforeEach(() => {
-  const dir = path.resolve(__dirname, "../../EmitTypespecProject/tsp-output")
+  const dir = path.resolve(__dirname, "../EmitTypespecProject/tsp-output")
   if (fs.existsSync(dir)) {
     for (const file of fs.readdirSync(dir)) {
       const filePath = path.resolve(dir, file)
@@ -26,7 +26,7 @@ beforeEach(() => {
 })
 
 test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
@@ -34,7 +34,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
   await start(page, {
     folderName: "EmitTypespecProject",
@@ -66,7 +66,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
 })
 
 test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
@@ -74,7 +74,7 @@ test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
   await start(page, {
     folderName: "EmitTypespecProject",

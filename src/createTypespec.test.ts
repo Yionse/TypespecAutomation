@@ -19,7 +19,7 @@ import {
 import { emitSelectLanguageForOpenapi, emitSelectType } from "./common/emiSteps"
 
 beforeEach(async () => {
-  const dir = path.resolve(__dirname, "../../CreateTypespecProject")
+  const dir = path.resolve(__dirname, "../CreateTypespecProject")
   if (fs.existsSync(dir)) {
     for (const file of fs.readdirSync(dir)) {
       const filePath = path.resolve(dir, file)
@@ -32,14 +32,14 @@ beforeEach(async () => {
 })
 
 test("CreateTypespec-Generic REST API", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
   await screenshotSelf(`createStart${+new Date()}.png`, "create")
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -71,14 +71,14 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
 })
 
 test("CreateTypespec-Generic REST API2", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
   await screenshotSelf(`createStart${+new Date()}.png`, "create")
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -110,7 +110,7 @@ test("CreateTypespec-Generic REST API2", async ({ launch }) => {
 })
 
 test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
@@ -118,7 +118,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
   await start(page, {
     folderName: "EmitTypespecProject",
@@ -150,7 +150,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
 })
 
 test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
@@ -158,7 +158,7 @@ test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
   await start(page, {
     folderName: "EmitTypespecProject",
@@ -192,7 +192,7 @@ test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {
 test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   const workspacePath = path.resolve(
     __dirname,
-    "../../importTypespecProjectOpenApi3"
+    "../importTypespecProjectOpenApi3"
   )
   const { page } = await launch({
     workspacePath,
@@ -201,7 +201,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -224,7 +224,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
 test("ImportTypespecFromOpenApi3 2", async ({ launch }) => {
   const workspacePath = path.resolve(
     __dirname,
-    "../../importTypespecProjectOpenApi3"
+    "../importTypespecProjectOpenApi3"
   )
   const { page } = await launch({
     workspacePath,
@@ -233,7 +233,7 @@ test("ImportTypespecFromOpenApi3 2", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -254,14 +254,14 @@ test("ImportTypespecFromOpenApi3 2", async ({ launch }) => {
 })
 
 test("CreateTypespec-Generic REST API3", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
   await screenshotSelf(`createStart${+new Date()}.png`, "create")
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -293,14 +293,14 @@ test("CreateTypespec-Generic REST API3", async ({ launch }) => {
 })
 
 test("CreateTypespec-Generic REST API4", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
   await screenshotSelf(`createStart${+new Date()}.png`, "create")
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -332,7 +332,7 @@ test("CreateTypespec-Generic REST API4", async ({ launch }) => {
 })
 
 test("EmitTypespec-OpenAPI Document3", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
@@ -340,7 +340,7 @@ test("EmitTypespec-OpenAPI Document3", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
   await start(page, {
     folderName: "EmitTypespecProject",
@@ -372,7 +372,7 @@ test("EmitTypespec-OpenAPI Document3", async ({ launch }) => {
 })
 
 test("EmitTypespec-OpenAPI Document4", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
@@ -380,7 +380,7 @@ test("EmitTypespec-OpenAPI Document4", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
   await start(page, {
     folderName: "EmitTypespecProject",
@@ -414,7 +414,7 @@ test("EmitTypespec-OpenAPI Document4", async ({ launch }) => {
 test("ImportTypespecFromOpenApi3 3", async ({ launch }) => {
   const workspacePath = path.resolve(
     __dirname,
-    "../../importTypespecProjectOpenApi3"
+    "../importTypespecProjectOpenApi3"
   )
   const { page } = await launch({
     workspacePath,
@@ -423,7 +423,7 @@ test("ImportTypespecFromOpenApi3 3", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -446,7 +446,7 @@ test("ImportTypespecFromOpenApi3 3", async ({ launch }) => {
 test("ImportTypespecFromOpenApi3 4", async ({ launch }) => {
   const workspacePath = path.resolve(
     __dirname,
-    "../../importTypespecProjectOpenApi3"
+    "../importTypespecProjectOpenApi3"
   )
   const { page } = await launch({
     workspacePath,
@@ -455,7 +455,7 @@ test("ImportTypespecFromOpenApi3 4", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -476,14 +476,14 @@ test("ImportTypespecFromOpenApi3 4", async ({ launch }) => {
 })
 
 test("CreateTypespec-Generic REST API5", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
   await screenshotSelf(`createStart${+new Date()}.png`, "create")
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -515,14 +515,14 @@ test("CreateTypespec-Generic REST API5", async ({ launch }) => {
 })
 
 test("CreateTypespec-Generic REST API6", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
   await screenshotSelf(`createStart${+new Date()}.png`, "create")
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -554,7 +554,7 @@ test("CreateTypespec-Generic REST API6", async ({ launch }) => {
 })
 
 test("EmitTypespec-OpenAPI Document5", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
@@ -562,7 +562,7 @@ test("EmitTypespec-OpenAPI Document5", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
   await start(page, {
     folderName: "EmitTypespecProject",
@@ -594,7 +594,7 @@ test("EmitTypespec-OpenAPI Document5", async ({ launch }) => {
 })
 
 test("EmitTypespec-OpenAPI Document6", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
@@ -602,7 +602,7 @@ test("EmitTypespec-OpenAPI Document6", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
   await start(page, {
     folderName: "EmitTypespecProject",
@@ -636,7 +636,7 @@ test("EmitTypespec-OpenAPI Document6", async ({ launch }) => {
 test("ImportTypespecFromOpenApi3 5", async ({ launch }) => {
   const workspacePath = path.resolve(
     __dirname,
-    "../../importTypespecProjectOpenApi3"
+    "../importTypespecProjectOpenApi3"
   )
   const { page } = await launch({
     workspacePath,
@@ -645,7 +645,7 @@ test("ImportTypespecFromOpenApi3 5", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -668,7 +668,7 @@ test("ImportTypespecFromOpenApi3 5", async ({ launch }) => {
 test("ImportTypespecFromOpenApi3 6", async ({ launch }) => {
   const workspacePath = path.resolve(
     __dirname,
-    "../../importTypespecProjectOpenApi3"
+    "../importTypespecProjectOpenApi3"
   )
   const { page } = await launch({
     workspacePath,
@@ -677,7 +677,7 @@ test("ImportTypespecFromOpenApi3 6", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -698,14 +698,14 @@ test("ImportTypespecFromOpenApi3 6", async ({ launch }) => {
 })
 
 test("CreateTypespec-Generic REST API7", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
   await screenshotSelf(`createStart${+new Date()}.png`, "create")
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -737,14 +737,14 @@ test("CreateTypespec-Generic REST API7", async ({ launch }) => {
 })
 
 test("CreateTypespec-Generic REST API8", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
   await screenshotSelf(`createStart${+new Date()}.png`, "create")
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -776,7 +776,7 @@ test("CreateTypespec-Generic REST API8", async ({ launch }) => {
 })
 
 test("EmitTypespec-OpenAPI Document7", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
@@ -784,7 +784,7 @@ test("EmitTypespec-OpenAPI Document7", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
   await start(page, {
     folderName: "EmitTypespecProject",
@@ -816,7 +816,7 @@ test("EmitTypespec-OpenAPI Document7", async ({ launch }) => {
 })
 
 test("EmitTypespec-OpenAPI Document8", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../EmitTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
@@ -824,7 +824,7 @@ test("EmitTypespec-OpenAPI Document8", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
   await start(page, {
     folderName: "EmitTypespecProject",
@@ -858,7 +858,7 @@ test("EmitTypespec-OpenAPI Document8", async ({ launch }) => {
 test("ImportTypespecFromOpenApi3 7", async ({ launch }) => {
   const workspacePath = path.resolve(
     __dirname,
-    "../../importTypespecProjectOpenApi3"
+    "../importTypespecProjectOpenApi3"
   )
   const { page } = await launch({
     workspacePath,
@@ -867,7 +867,7 @@ test("ImportTypespecFromOpenApi3 7", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -890,7 +890,7 @@ test("ImportTypespecFromOpenApi3 7", async ({ launch }) => {
 test("ImportTypespecFromOpenApi3 8", async ({ launch }) => {
   const workspacePath = path.resolve(
     __dirname,
-    "../../importTypespecProjectOpenApi3"
+    "../importTypespecProjectOpenApi3"
   )
   const { page } = await launch({
     workspacePath,
@@ -899,7 +899,7 @@ test("ImportTypespecFromOpenApi3 8", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {

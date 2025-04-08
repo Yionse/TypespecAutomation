@@ -1,5 +1,5 @@
 import { beforeEach } from "vitest"
-import { screenshotSelf, test } from "../common/utils"
+import { screenshotSelf, test } from "./common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
@@ -11,12 +11,12 @@ import {
   preContrastResult,
   selectFolder,
   start,
-} from "../common/commonSteps"
+} from "./common/commonSteps"
 
 beforeEach(() => {
   const importTypespec = path.resolve(
     __dirname,
-    "../../ImportTypespecProjectOpenApi3"
+    "../ImportTypespecProjectOpenApi3"
   )
   if (fs.existsSync(importTypespec)) {
     let hasOpenapi3File = false
@@ -39,7 +39,7 @@ beforeEach(() => {
 test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   const workspacePath = path.resolve(
     __dirname,
-    "../../importTypespecProjectOpenApi3"
+    "../importTypespecProjectOpenApi3"
   )
   const { page } = await launch({
     workspacePath,
@@ -48,7 +48,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
@@ -71,7 +71,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
 test("ImportTypespecFromOpenApi3 2", async ({ launch }) => {
   const workspacePath = path.resolve(
     __dirname,
-    "../../importTypespecProjectOpenApi3"
+    "../importTypespecProjectOpenApi3"
   )
   const { page } = await launch({
     workspacePath,
@@ -80,7 +80,7 @@ test("ImportTypespecFromOpenApi3 2", async ({ launch }) => {
 
   await installExtensionForFile(
     page,
-    path.resolve(__dirname, "../../extension.vsix")
+    path.resolve(__dirname, "../extension.vsix")
   )
 
   await start(page, {
