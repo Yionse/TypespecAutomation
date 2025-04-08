@@ -17,9 +17,9 @@ jobs:
         displayName: "Install dependencies"
 
       - script: |
-          echo "Running create tests"
+          echo "Running tests"
           npm run test
-        displayName: "Run create tests"
+        displayName: "Run tests"
         env:
           BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
           CI: true

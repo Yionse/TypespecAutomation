@@ -7,19 +7,16 @@ import {
   installExtensionForFile,
   closeVscode,
   notEmptyFolderContinue,
-} from "../common/commonSteps"
-import { screenshotSelf, sleep, test } from "../common/utils"
+} from "./common/commonSteps"
+import { screenshotSelf, sleep, test } from "./common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
   inputProjectName,
   selectEmitters,
   selectTemplate,
-} from "../common/createSteps"
-import {
-  emitSelectLanguageForOpenapi,
-  emitSelectType,
-} from "../common/emiSteps"
+} from "./common/createSteps"
+import { emitSelectLanguageForOpenapi, emitSelectType } from "./common/emiSteps"
 
 beforeEach(async () => {
   const dir = path.resolve(__dirname, "../../CreateTypespecProject")
