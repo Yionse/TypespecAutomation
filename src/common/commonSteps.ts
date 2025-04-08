@@ -182,8 +182,9 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     .click()
 }
 
-async function closeVscode(page: Page) {
-  await page.keyboard.press("Alt+F4")
+async function closeVscode() {
+  await keyboard.pressKey(Key.LeftAlt, Key.F4)
+  await keyboard.releaseKey(Key.LeftAlt, Key.F4)
 }
 
 export {

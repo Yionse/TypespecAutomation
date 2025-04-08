@@ -8,7 +8,7 @@ import {
   closeVscode,
   notEmptyFolderContinue,
 } from "../common/commonSteps"
-import { screenshotSelf, test } from "../common/utils"
+import { screenshotSelf, sleep, test } from "../common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
@@ -18,10 +18,8 @@ import {
 } from "../common/createSteps"
 import {
   emitSelectLanguageForOpenapi,
-  emitSelectProject,
   emitSelectType,
 } from "../common/emiSteps"
-import { sleep } from "@nut-tree-fork/nut-js"
 
 beforeEach(async () => {
   const dir = path.resolve(__dirname, "../../CreateTypespecProject")
@@ -29,11 +27,11 @@ beforeEach(async () => {
     for (const file of fs.readdirSync(dir)) {
       const filePath = path.resolve(dir, file)
       fs.rmSync(filePath, { recursive: true, force: true })
-      await sleep(3)
     }
   } else {
     fs.mkdirSync(dir, { recursive: true })
   }
+  await sleep(3)
 })
 
 test("CreateTypespec-Generic REST API", async ({ launch }) => {
@@ -61,7 +59,7 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
     "Failed to create project Successful",
     [10, 10]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(
     [
       ".gitignore",
@@ -100,7 +98,7 @@ test("CreateTypespec-Generic REST API2", async ({ launch }) => {
     "Failed to create project Successful",
     [10, 10]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(
     [
       ".gitignore",
@@ -146,7 +144,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     "Failed to emit project Successful",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
 
   await contrastResult(
     ["openapi.3.0.yaml"],
@@ -186,7 +184,7 @@ test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {
     "Failed to emit project Successful",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
 
   await contrastResult(
     ["openapi.3.0.yaml"],
@@ -222,7 +220,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
 
@@ -254,7 +252,7 @@ test("ImportTypespecFromOpenApi3 2", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
 
@@ -283,7 +281,7 @@ test("CreateTypespec-Generic REST API3", async ({ launch }) => {
     "Failed to create project Successful",
     [10, 10]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(
     [
       ".gitignore",
@@ -322,7 +320,7 @@ test("CreateTypespec-Generic REST API4", async ({ launch }) => {
     "Failed to create project Successful",
     [10, 10]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(
     [
       ".gitignore",
@@ -368,7 +366,7 @@ test("EmitTypespec-OpenAPI Document3", async ({ launch }) => {
     "Failed to emit project Successful",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
 
   await contrastResult(
     ["openapi.3.0.yaml"],
@@ -408,7 +406,7 @@ test("EmitTypespec-OpenAPI Document4", async ({ launch }) => {
     "Failed to emit project Successful",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
 
   await contrastResult(
     ["openapi.3.0.yaml"],
@@ -444,7 +442,7 @@ test("ImportTypespecFromOpenApi3 3", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
 
@@ -476,7 +474,7 @@ test("ImportTypespecFromOpenApi3 4", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
 
@@ -505,7 +503,7 @@ test("CreateTypespec-Generic REST API5", async ({ launch }) => {
     "Failed to create project Successful",
     [10, 10]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(
     [
       ".gitignore",
@@ -544,7 +542,7 @@ test("CreateTypespec-Generic REST API6", async ({ launch }) => {
     "Failed to create project Successful",
     [10, 10]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(
     [
       ".gitignore",
@@ -590,7 +588,7 @@ test("EmitTypespec-OpenAPI Document5", async ({ launch }) => {
     "Failed to emit project Successful",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
 
   await contrastResult(
     ["openapi.3.0.yaml"],
@@ -630,7 +628,7 @@ test("EmitTypespec-OpenAPI Document6", async ({ launch }) => {
     "Failed to emit project Successful",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
 
   await contrastResult(
     ["openapi.3.0.yaml"],
@@ -666,7 +664,7 @@ test("ImportTypespecFromOpenApi3 5", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
 
@@ -698,7 +696,7 @@ test("ImportTypespecFromOpenApi3 6", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
 
@@ -727,7 +725,7 @@ test("CreateTypespec-Generic REST API7", async ({ launch }) => {
     "Failed to create project Successful",
     [10, 10]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(
     [
       ".gitignore",
@@ -766,7 +764,7 @@ test("CreateTypespec-Generic REST API8", async ({ launch }) => {
     "Failed to create project Successful",
     [10, 10]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(
     [
       ".gitignore",
@@ -812,7 +810,7 @@ test("EmitTypespec-OpenAPI Document7", async ({ launch }) => {
     "Failed to emit project Successful",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
 
   await contrastResult(
     ["openapi.3.0.yaml"],
@@ -852,7 +850,7 @@ test("EmitTypespec-OpenAPI Document8", async ({ launch }) => {
     "Failed to emit project Successful",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
 
   await contrastResult(
     ["openapi.3.0.yaml"],
@@ -888,7 +886,7 @@ test("ImportTypespecFromOpenApi3 7", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
 
@@ -920,7 +918,7 @@ test("ImportTypespecFromOpenApi3 8", async ({ launch }) => {
     "Failed to import project successfully",
     [10, 3]
   )
-  await closeVscode(page)
+  await closeVscode()
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
 
@@ -935,5 +933,5 @@ test("ImportTypespecFromOpenApi3 8", async ({ launch }) => {
 //   await page.getByRole("button", { name: "Create TypeSpec Project" }).click()
 //   await selectFolder()
 //   await notEmptyFolderContinue(page)
-//   await closeVscode(page)
+//   await closeVscode()
 // })
