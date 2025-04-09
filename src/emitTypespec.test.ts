@@ -30,9 +30,8 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf("emitStart.png", "create")
+  await screenshotSelf("emitStart.png", "emit")
   await sleep(3)
-  await runPythonFile("test.py")
   await installExtensionForFile(
     page,
     path.resolve(__dirname, "../extension.vsix")
@@ -71,7 +70,7 @@ test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf("emitStart.png", "create")
+  await screenshotSelf("emitStart2.png", "emit")
 
   await installExtensionForFile(
     page,

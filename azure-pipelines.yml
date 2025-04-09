@@ -11,14 +11,13 @@ jobs:
         inputs:
           versionSpec: "20.18.3"
         displayName: "Install Node.js"
-      - task: UsePythonVersion@0
-        inputs:
-          versionSpec: "3.10"
-          addToPath: true
-        displayName: "Install Python 3.10"
+      # - task: UsePythonVersion@0
+      #   inputs:
+      #     versionSpec: "3.10"
+      #     addToPath: true
+      #   displayName: "Install Python 3.10"
       - script: |
           npm install
-          pip install win32gui
         displayName: "Install dependencies"
 
       - script: |

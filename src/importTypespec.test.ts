@@ -44,9 +44,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf("importStart.png", "create")
-  await sleep(3)
-  await runPythonFile("test.py")
+  await screenshotSelf("importStart.png", "import")
   await installExtensionForFile(
     page,
     path.resolve(__dirname, "../extension.vsix")
@@ -77,7 +75,7 @@ test("ImportTypespecFromOpenApi3 2", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  await screenshotSelf("importStart.png", "create")
+  await screenshotSelf("importStart2.png", "import")
 
   await installExtensionForFile(
     page,
