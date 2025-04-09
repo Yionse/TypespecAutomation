@@ -4,6 +4,7 @@ import os from "node:os"
 import path, { resolve } from "node:path"
 import { test as baseTest, inject } from "vitest"
 import screenshot from "screenshot-desktop"
+import { spawn } from "node:child_process"
 
 interface Context {
   page: Page
@@ -120,4 +121,18 @@ async function screenshotSelf(
   }
 }
 
-export { sleep, test, retry, screenshotSelf }
+async function runPythonFile(pythonFile: string) {
+  const py = spawn("python", [pythonFile], {
+    cwd: path.resolve(__dirname, "../"),
+    shell: true,
+  })
+  py.stdout.on("data", (data) => {
+    console.log(data.toString())
+  })
+
+  py.stderr.on("data", (data) => {
+    console.error(data.toString())
+  })
+}
+
+export { sleep, test, retry, screenshotSelf, runPythonFile }

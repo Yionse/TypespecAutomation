@@ -8,7 +8,7 @@ import {
   closeVscode,
   notEmptyFolderContinue,
 } from "./common/commonSteps"
-import { screenshotSelf, sleep, test } from "./common/utils"
+import { runPythonFile, screenshotSelf, sleep, test } from "./common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
@@ -37,6 +37,8 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
     workspacePath,
   })
   await screenshotSelf(`createStart${+new Date()}.png`, "create")
+  await sleep(3)
+  await runPythonFile("test.py")
   await installExtensionForFile(
     page,
     path.resolve(__dirname, "../extension.vsix")
