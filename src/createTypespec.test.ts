@@ -1,4 +1,4 @@
-import { afterEach, beforeEach } from "vitest"
+import { afterEach, beforeEach, test as tests } from "vitest"
 import {
   contrastResult,
   start,
@@ -8,7 +8,13 @@ import {
   closeVscode,
   notEmptyFolderContinue,
 } from "./common/commonSteps"
-import { runPythonFile, screenshotSelf, sleep, test } from "./common/utils"
+import {
+  retry,
+  runPythonFile,
+  screenshotSelf,
+  sleep,
+  test,
+} from "./common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {

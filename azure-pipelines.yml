@@ -11,11 +11,6 @@ jobs:
         inputs:
           versionSpec: "20.18.3"
         displayName: "Install Node.js"
-      # - task: UsePythonVersion@0
-      #   inputs:
-      #     versionSpec: "3.10"
-      #     addToPath: true
-      #   displayName: "Install Python 3.10"
       - script: |
           npm install
         displayName: "Install dependencies"
@@ -23,29 +18,11 @@ jobs:
       - script: |
           echo "Running tests"
           npm run test
-        displayName: "Run tests"
+        displayName: "Run UI Tests"
         env:
           BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
           CI: true
         continueOnError: true
-
-      # - script: |
-      #     echo "Running emit tests"
-      #     npm run test:emit
-      #   displayName: "Run emit tests"
-      #   env:
-      #     BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
-      #     CI: true
-      #   continueOnError: true
-
-      # - script: |
-      #     echo "Running import tests"
-      #     npm run test:import
-      #   displayName: "Run import tests"
-      #   env:
-      #     BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
-      #     CI: true
-      #   continueOnError: true
 
       - task: PublishBuildArtifacts@1
         inputs:
