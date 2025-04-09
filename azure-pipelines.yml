@@ -1,5 +1,5 @@
 trigger:
-  - test/pipeline-windows
+  - test/multiple_case
   - master
 
 jobs:
