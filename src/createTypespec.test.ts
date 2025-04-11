@@ -38,6 +38,7 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+  console.log("开始了没有？")
 
   await installExtensionForFile(
     page,
