@@ -4,7 +4,7 @@ trigger:
 jobs:
   - job: RunWindowsTests
     pool:
-      vmImage: "windows-latest"
+      vmImage: "ubuntu-latest"
     steps:
       - task: NodeTool@0
         inputs:
@@ -15,7 +15,7 @@ jobs:
           npm install
         displayName: "Install dependencies"
 
-      - script: |
+      - script: |`
           echo "Running UI Tests"
           npm run test
         displayName: "Run UI Tests"
