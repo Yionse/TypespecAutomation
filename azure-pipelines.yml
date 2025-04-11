@@ -12,19 +12,46 @@ jobs:
         inputs:
           versionSpec: "20.18.3"
         displayName: "Install Node.js"
+
+      - bash: |
+          echo ">>> 安装 Playwright 和 Electron 所需的系统依赖"
+          sudo apt-get update
+          sudo apt-get install -y \
+            libgtk-3-0 libxss1 libasound2 libnss3 libx11-xcb1 \
+            libxcomposite1 libxrandr2 libxcb-dri3-0 libdrm2 libgbm1 \
+            libxdamage1 libatk-bridge2.0-0 libcups2 libxkbcommon0 \
+            xvfb
+        displayName: "Install Linux Dependencies"
+
       - bash: |
           /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
           echo ">>> Started xvfb"
-        displayName: Start xvfb
+        displayName: "Start xvfb"
+
       - bash: |
+          echo ">>> 安装依赖和 Playwright 所需浏览器"
           npm install
-        displayName: "Install dependencies"
+          npx playwright install
+
+          echo ">>> 下载 VS Code 可执行文件"
+          node -e "require('@vscode/test-electron').download().then(p => console.log('##vso[task.setvariable variable=VSCODE_E2E_DOWNLOAD_PATH]' + p))"
+        displayName: "Install deps and download VSCode"
+
       - bash: |
-          npm run test
+          echo ">>> 运行 Playwright Electron UI 测试"
+          export DISPLAY=:99
+          export VSCODE_E2E_DOWNLOAD_PATH=$(VSCODE_E2E_DOWNLOAD_PATH)
+
+          npm run test || {
+            echo "❌ 测试失败，打印日志："
+            cat ./tests-logs-*.txt || true
+            exit 1
+          }
         displayName: "Run Playwright Electron UI Tests"
         env:
           CI: true
-          BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
+          DISPLAY: ":99"
+          VSCODE_E2E_DOWNLOAD_PATH: $(VSCODE_E2E_DOWNLOAD_PATH)
           ELECTRON_DISABLE_SANDBOX: "1"
         continueOnError: true
 
@@ -34,4 +61,4 @@ jobs:
           artifact: "screenshots"
           publishLocation: "Container"
           includePatterns: "images/**/*.png"
-        displayName: "📤 上传截图"
+        displayName: "Publish Screenshots"
