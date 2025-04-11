@@ -36,10 +36,12 @@ const test = baseTest.extend<{
       console.log(executablePath)
 
       const workspacePath = options.workspacePath
+      console.log("拿到path")
 
       const tempDir = await fs.promises.mkdtemp(
         path.join(os.tmpdir(), "typespec-automation")
       )
+      console.log("asdasdas")
 
       const app = await _electron.launch({
         executablePath,
@@ -60,7 +62,10 @@ const test = baseTest.extend<{
           `--folder-uri=file:${path.resolve(workspacePath)}`,
         ].filter((v): v is string => !!v),
       })
+      console.log("启动了app")
+
       const page = await app.firstWindow()
+      console.log("拿到了Windows")
 
       return { page }
     })
