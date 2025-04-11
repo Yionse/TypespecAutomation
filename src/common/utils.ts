@@ -145,6 +145,8 @@ class Screenshot {
     if (this.fileList.length === 0 || !this.isLocalSave) {
       return
     }
+    console.log("调用保存了")
+
     // date小的在前面,让文件有序
     this.fileList.sort((a, b) => a.date - b.date)
     for (let i = 0; i < this.fileList.length; i++) {

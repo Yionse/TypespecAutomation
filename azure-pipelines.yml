@@ -45,6 +45,9 @@ jobs:
           VSCODE_E2E_DOWNLOAD_PATH: $(VSCODE_E2E_DOWNLOAD_PATH)
           ELECTRON_DISABLE_SANDBOX: "1"
         continueOnError: true
+      - bash: |
+          ls
+        displayName: "List artifacts"
 
       - task: PublishBuildArtifacts@1
         inputs:
