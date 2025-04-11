@@ -33,6 +33,8 @@ const test = baseTest.extend<{
 
     await use(async (options) => {
       const executablePath = inject("executablePath")
+      console.log(executablePath)
+
       const workspacePath = options.workspacePath
 
       const tempDir = await fs.promises.mkdtemp(
