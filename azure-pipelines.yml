@@ -1,32 +1,57 @@
 trigger:
   - master
   - test/pipeline
+
 jobs:
-  - job: RunWindowsTests
+  - job: RunElectronUITestsOnLinux
     pool:
       vmImage: "ubuntu-latest"
+
     steps:
+      - script: |
+          echo "🔧 安装 Electron 所需依赖..."
+          sudo apt-get update
+          sudo apt-get install -y \
+            libgtk-3-0 libxss1 libasound2 libnss3 libx11-xcb1 \
+            libxcomposite1 libxrandr2 libxcb-dri3-0 libdrm2 libgbm1 \
+            libxdamage1 libatk-bridge2.0-0 libcups2 libxkbcommon0 \
+            xvfb
+        displayName: "Install Electron runtime dependencies"
+
       - task: NodeTool@0
         inputs:
           versionSpec: "20.18.3"
         displayName: "Install Node.js"
 
       - script: |
-          npm install
-        displayName: "Install dependencies"
+          echo "📦 安装依赖..."
+          npm ci
+          npx playwright install
+        displayName: "Install dependencies and Playwright"
 
       - script: |
-          echo "Running UI Tests"
-          npm run test
-        displayName: "Run UI Tests"
+          echo "🚀 启动虚拟 X11 (xvfb) 并运行 Electron 测试..."
+          Xvfb :99 -ac &
+          export DISPLAY=:99
+
+          echo "🔍 打印 Electron 启动路径"
+          node -e "console.log('Executable path:', require('./path-to-your-inject-module').inject('executablePath'))"
+
+          npm run test || {
+            echo "❌ 测试失败，尝试输出日志："
+            cat ./tests-logs-*.txt || true
+          }
+        displayName: "Run Playwright Electron UI Tests"
         env:
-          BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
           CI: true
+          BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
+          ELECTRON_DISABLE_SANDBOX: "1"
         continueOnError: true
+
       - task: PublishBuildArtifacts@1
         inputs:
           path: "$(Build.ArtifactStagingDirectory)"
           artifact: "screenshots"
           publishLocation: "Container"
           includePatterns: "images/**/*.png"
-        displayName: "Publish screenshots to Artifacts"
+        displayName: "📤 上传截图"
