@@ -15,7 +15,7 @@ jobs:
           npm install
         displayName: "Install dependencies"
 
-      - script: |`
+      - script: |
           echo "Running UI Tests"
           npm run test
         displayName: "Run UI Tests"
