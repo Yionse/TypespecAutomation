@@ -14,7 +14,6 @@ jobs:
         displayName: "Install Node.js"
 
       - bash: |
-          echo ">>> 安装 Playwright 和 Electron 所需的系统依赖"
           sudo apt-get update
           sudo apt-get install -y \
             libgtk-3-0 libxss1 libasound2 libnss3 libx11-xcb1 \
@@ -29,24 +28,16 @@ jobs:
         displayName: "Start xvfb"
 
       - bash: |
-          echo ">>> 安装依赖和 Playwright 所需浏览器"
           npm install
-          npx playwright install
 
-          echo ">>> 下载 VS Code 可执行文件"
           node -e "require('@vscode/test-electron').download().then(p => console.log('##vso[task.setvariable variable=VSCODE_E2E_DOWNLOAD_PATH]' + p))"
         displayName: "Install deps and download VSCode"
 
       - bash: |
-          echo ">>> 运行 Playwright Electron UI 测试"
           export DISPLAY=:99
           export VSCODE_E2E_DOWNLOAD_PATH=$(VSCODE_E2E_DOWNLOAD_PATH)
 
-          npm run test || {
-            echo "❌ 测试失败，打印日志："
-            cat ./tests-logs-*.txt || true
-            exit 1
-          }
+          npm run test
         displayName: "Run Playwright Electron UI Tests"
         env:
           CI: true

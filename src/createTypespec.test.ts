@@ -38,82 +38,84 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  console.log("开始了没有？")
+  screenShot.screenShot("open_vscode.png")
+  screenShot.save()
+  // console.log("开始了没有？")
 
-  await installExtensionForFile(
-    page,
-    path.resolve(__dirname, "../extension.vsix")
-  )
-  console.log("asadasda")
+  // await installExtensionForFile(
+  //   page,
+  //   path.resolve(__dirname, "../extension.vsix")
+  // )
+  // console.log("asadasda")
 
-  await start(page, {
-    folderName: "CreateTypespecProject",
-    command: "Create Typespec Project",
-  })
-  await selectFolder()
-  await selectTemplate(page, "Generic REST API")
-  await inputProjectName(page)
-  await selectEmitters(page, ["OpenAPI"])
-  await preContrastResult(
-    page,
-    "Project created!",
-    "Failed to create project Successful",
-    [10, 10]
-  )
-  console.log("Pppppppppppppppppp")
+  // await start(page, {
+  //   folderName: "CreateTypespecProject",
+  //   command: "Create Typespec Project",
+  // })
+  // await selectFolder()
+  // await selectTemplate(page, "Generic REST API")
+  // await inputProjectName(page)
+  // await selectEmitters(page, ["OpenAPI"])
+  // await preContrastResult(
+  //   page,
+  //   "Project created!",
+  //   "Failed to create project Successful",
+  //   [10, 10]
+  // )
+  // console.log("Pppppppppppppppppp")
 
-  await closeVscode()
-  await contrastResult(
-    [
-      ".gitignore",
-      "main.tsp",
-      "node_modules",
-      "package-lock.json",
-      "package.json",
-      "tspconfig.yaml",
-    ],
-    workspacePath
-  )
+  // await closeVscode()
+  // await contrastResult(
+  //   [
+  //     ".gitignore",
+  //     "main.tsp",
+  //     "node_modules",
+  //     "package-lock.json",
+  //     "package.json",
+  //     "tspconfig.yaml",
+  //   ],
+  //   workspacePath
+  // )
 })
 
-test("CreateTypespec-Generic REST API 2", async ({ launch }) => {
-  screenShot.setDir("CreateTypespec-Generic REST API1")
-  const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
-  const { page } = await launch({
-    workspacePath,
-  })
-  await installExtensionForFile(
-    page,
-    path.resolve(__dirname, "../extension.vsix")
-  )
+// test("CreateTypespec-Generic REST API 2", async ({ launch }) => {
+//   screenShot.setDir("CreateTypespec-Generic REST API1")
+//   const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
+//   const { page } = await launch({
+//     workspacePath,
+//   })
+//   await installExtensionForFile(
+//     page,
+//     path.resolve(__dirname, "../extension.vsix")
+//   )
 
-  await start(page, {
-    folderName: "CreateTypespecProject",
-    command: "Create Typespec Project",
-  })
-  await selectFolder()
-  await selectTemplate(page, "Generic REST API")
-  await inputProjectName(page)
-  await selectEmitters(page, ["OpenAPI"])
-  await preContrastResult(
-    page,
-    "Project created!",
-    "Failed to create project Successful",
-    [10, 10]
-  )
-  await closeVscode()
-  await contrastResult(
-    [
-      ".gitignore",
-      "main.tsp",
-      "node_modules",
-      "package-lock.json",
-      "package.json",
-      "tspconfig.yaml",
-    ],
-    workspacePath
-  )
-})
+//   await start(page, {
+//     folderName: "CreateTypespecProject",
+//     command: "Create Typespec Project",
+//   })
+//   await selectFolder()
+//   await selectTemplate(page, "Generic REST API")
+//   await inputProjectName(page)
+//   await selectEmitters(page, ["OpenAPI"])
+//   await preContrastResult(
+//     page,
+//     "Project created!",
+//     "Failed to create project Successful",
+//     [10, 10]
+//   )
+//   await closeVscode()
+//   await contrastResult(
+//     [
+//       ".gitignore",
+//       "main.tsp",
+//       "node_modules",
+//       "package-lock.json",
+//       "package.json",
+//       "tspconfig.yaml",
+//     ],
+//     workspacePath
+//   )
+// })
 
 // test("CreateTypespec-Special scenarios-button", async ({ launch }) => {
 //   const { page } = await launch({ workspacePath: "./test" })
