@@ -38,6 +38,10 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+  console.log(process.env.BUILD_ARTIFACT_STAGING_DIRECTORY)
+
+  console.log("已经获取到了page对象")
+
   screenShot.screenShot("open_vscode.png")
   screenShot.save()
   // console.log("开始了没有？")
