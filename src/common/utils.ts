@@ -49,6 +49,7 @@ const test = baseTest.extend<{
           ...process.env,
           VITEST_VSCODE_E2E_LOG_FILE: logPath,
           VITEST_VSCODE_LOG: "verbose",
+          DISPLAY: ":99", // 这个非常关键！
         },
         args: [
           "--no-sandbox",
