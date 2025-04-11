@@ -44,6 +44,7 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
     page,
     path.resolve(__dirname, "../extension.vsix")
   )
+  console.log("asadasda")
 
   await start(page, {
     folderName: "CreateTypespecProject",
@@ -59,6 +60,8 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
     "Failed to create project Successful",
     [10, 10]
   )
+  console.log("Pppppppppppppppppp")
+
   await closeVscode()
   await contrastResult(
     [
