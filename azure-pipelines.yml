@@ -17,6 +17,9 @@ jobs:
           echo ">>> Started xvfb"
         displayName: Start xvfb
       - bash: |
+          npm install
+        displayName: "Install dependencies"
+      - bash: |
           npm run test
         displayName: "Run Playwright Electron UI Tests"
         env:
