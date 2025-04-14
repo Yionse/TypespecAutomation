@@ -144,13 +144,11 @@ async function installExtension(page: Page) {
  */
 async function installExtensionForFile(page: Page, fullFilePath: string) {
   await screenShot.screenShot("open_vscode.png")
-  console.log("点击？")
 
   await page
     .getByRole("tab", { name: /Extensions/ })
     .locator("a")
     .click()
-  console.log("点击Extensions")
 
   await screenShot.screenShot("change_extension.png")
   let moreItem: Locator

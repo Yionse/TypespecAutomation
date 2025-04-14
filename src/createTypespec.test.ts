@@ -6,6 +6,7 @@ import {
   preContrastResult,
   installExtensionForFile,
   closeVscode,
+  installExtension,
 } from "./common/commonSteps"
 import { screenShot, test } from "./common/utils"
 import fs from "node:fs"
@@ -38,19 +39,18 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  console.log(process.env.BUILD_ARTIFACT_STAGING_DIRECTORY)
+  // console.log(process.env.BUILD_ARTIFACT_STAGING_DIRECTORY)
 
-  console.log("已经获取到了page对象")
+  // screenShot.screenShot("open_vscode.png")
+  // screenShot.save()
 
-  screenShot.screenShot("open_vscode.png")
-  screenShot.save()
-  // console.log("开始了没有？")
+  await installExtension(page)
+  console.log("installed extension")
 
   // await installExtensionForFile(
   //   page,
   //   path.resolve(__dirname, "../extension.vsix")
   // )
-  // console.log("asadasda")
 
   // await start(page, {
   //   folderName: "CreateTypespecProject",

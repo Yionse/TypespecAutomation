@@ -36,7 +36,6 @@ const test = baseTest.extend<{
       console.log(executablePath)
 
       const workspacePath = options.workspacePath
-      console.log("拿到path")
 
       const tempDir = await fs.promises.mkdtemp(
         path.join(os.tmpdir(), "typespec-automation")
@@ -49,7 +48,7 @@ const test = baseTest.extend<{
           ...process.env,
           VITEST_VSCODE_E2E_LOG_FILE: logPath,
           VITEST_VSCODE_LOG: "verbose",
-          DISPLAY: ":99", // 这个非常关键！
+          DISPLAY: ":99",
         },
         args: [
           "--no-sandbox",
@@ -63,10 +62,8 @@ const test = baseTest.extend<{
           `--folder-uri=file:${path.resolve(workspacePath)}`,
         ].filter((v): v is string => !!v),
       })
-      console.log("启动了app")
 
       const page = await app.firstWindow()
-      console.log("拿到了Windows")
 
       return { page }
     })
@@ -145,7 +142,6 @@ class Screenshot {
     if (this.fileList.length === 0 || !this.isLocalSave) {
       return
     }
-    console.log("调用保存了")
 
     // date小的在前面,让文件有序
     this.fileList.sort((a, b) => a.date - b.date)
