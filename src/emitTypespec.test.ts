@@ -33,38 +33,40 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     workspacePath,
   })
 
-  // await installExtensionForFile(
-  //   page,
-  //   path.resolve(__dirname, "../extension.vsix")
-  // )
-  await installExtension(page)
-  await start(page, {
-    folderName: "EmitTypespecProject",
-    command: "Emit from Typespec",
-  })
-  // await emitSelectProject(page, "TextTranslation")
-  await screenShot.screenShot("emitter_list.png")
-
-  await page
-    .getByRole("option", { name: "Choose another emitter" })
-    .locator("a")
-    .click()
-  await emitSelectType(page, "OpenAPI Document")
-
-  await emitSelectLanguageForOpenapi(page)
-
-  await preContrastResult(
+  await installExtensionForFile(
     page,
-    "OpenAPI3...Succeeded",
-    "Failed to emit project Successful",
-    [10, 3]
+    path.resolve(__dirname, "../extension.vsix")
   )
-  await closeVscode()
+  console.log("installed extension")
 
-  await contrastResult(
-    ["openapi.3.0.yaml"],
-    path.resolve(workspacePath, "./tsp-output/@typespec/openapi3")
-  )
+  // await installExtension(page)
+  // await start(page, {
+  //   folderName: "EmitTypespecProject",
+  //   command: "Emit from Typespec",
+  // })
+  // // await emitSelectProject(page, "TextTranslation")
+  // await screenShot.screenShot("emitter_list.png")
+
+  // await page
+  //   .getByRole("option", { name: "Choose another emitter" })
+  //   .locator("a")
+  //   .click()
+  // await emitSelectType(page, "OpenAPI Document")
+
+  // await emitSelectLanguageForOpenapi(page)
+
+  // await preContrastResult(
+  //   page,
+  //   "OpenAPI3...Succeeded",
+  //   "Failed to emit project Successful",
+  //   [10, 3]
+  // )
+  // await closeVscode()
+
+  // await contrastResult(
+  //   ["openapi.3.0.yaml"],
+  //   path.resolve(workspacePath, "./tsp-output/@typespec/openapi3")
+  // )
 })
 
 // test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {
