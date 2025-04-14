@@ -32,7 +32,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-
+  console.log("launched")
   await installExtensionForFile(
     page,
     path.resolve(__dirname, "../extension.vsix")
