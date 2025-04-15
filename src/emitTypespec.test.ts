@@ -32,7 +32,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath
   })
-  // await page.screenshot({ path: `vscode${+new Date()}.png` });
+  await page.screenshot({ path: `vscode${+new Date()}.png` })
 
   console.log("launched")
   await installExtensionForFile(

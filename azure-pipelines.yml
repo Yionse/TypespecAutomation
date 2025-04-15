@@ -56,5 +56,5 @@ jobs:
           path: "$(Build.ArtifactStagingDirectory)"
           artifact: "screenshots"
           publishLocation: "Container"
-          includePatterns: "images/**/*.png"
+          includePatterns: "*.png"
         displayName: "Publish Screenshots"
