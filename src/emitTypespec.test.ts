@@ -5,7 +5,7 @@ import {
   installExtension,
   installExtensionForFile,
   preContrastResult,
-  start,
+  start
 } from "./common/commonSteps"
 import { emitSelectLanguageForOpenapi, emitSelectType } from "./common/emiSteps"
 import { screenShot, test } from "./common/utils"
@@ -30,26 +30,26 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   screenShot.setDir("EmitTypespec-OpenAPI Document")
   const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
-    workspacePath,
+    workspacePath
   })
   // await page.screenshot({ path: `vscode${+new Date()}.png` });
 
   console.log("launched")
-  // // await installExtensionForFile(
-  // //   page,
-  // //   path.resolve(__dirname, "../extension.vsix")
-  // // )
-  await installExtension(page)
+  await installExtensionForFile(
+    page,
+    path.resolve(__dirname, "../extension.vsix")
+  )
+  // await installExtension(page)
   // await page.pause()
   console.log("installed extension")
 
   // await installExtension(page)
   await start(page, {
     folderName: "EmitTypespecProject",
-    command: "Emit from Typespec",
+    command: "Emit from Typespec"
   })
-  console.log('start');
-  
+  console.log("start")
+
   // // await emitSelectProject(page, "TextTranslation")
   // await screenShot.screenShot("emitter_list.png")
 
@@ -62,8 +62,8 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   console.log("select type")
 
   await emitSelectLanguageForOpenapi(page)
-  console.log("select language");
-  
+  console.log("select language")
+
   await preContrastResult(
     page,
     "OpenAPI3...Succeeded",
@@ -71,7 +71,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     [10, 3]
   )
   // await closeVscode()
-  console.log("result");
+  console.log("result")
 
   await contrastResult(
     ["openapi.3.0.yaml"],
