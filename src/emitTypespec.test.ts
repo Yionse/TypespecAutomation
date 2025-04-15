@@ -35,7 +35,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   await page.screenshot({
     path: `${
       process.env.BUILD_ARTIFACT_STAGING_DIRECTORY
-    }vscode${+new Date()}.png`
+    }/vscode${+new Date()}.png`
   })
 
   console.log("launched")
