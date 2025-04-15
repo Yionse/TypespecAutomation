@@ -40,7 +40,8 @@ const test = baseTest.extend<{
       const tempDir = await fs.promises.mkdtemp(
         path.join(os.tmpdir(), "typespec-automation")
       )
-      console.log("asdasdas")
+      console.log("before launch")
+      console.log(process.env.DISPLAY);
 
       const app = await _electron.launch({
         executablePath,
@@ -48,10 +49,14 @@ const test = baseTest.extend<{
           ...process.env,
           VITEST_VSCODE_E2E_LOG_FILE: logPath,
           VITEST_VSCODE_LOG: "verbose",
-          DISPLAY: ":99",
+          // DISPLAY: ":99",
         },
         args: [
           "--no-sandbox",
+          "--disable-gpu",
+          "--disable-software-rasterizer",
+          "--disable-gpu-compositing",
+          "--disable-gl-drawing-for-tests",
           "--disable-gpu-sandbox",
           "--disable-updates",
           "--skip-welcome",
@@ -64,7 +69,8 @@ const test = baseTest.extend<{
       })
 
       const page = await app.firstWindow()
-
+      console.log('get page');
+      
       return { page }
     })
 
@@ -96,8 +102,8 @@ async function retry(
     }
     count--
   }
-  await screenShot.screenShot("error.png")
-  screenShot.save()
+  // await screenShot.screenShot("error.png")
+  // screenShot.save()
   throw new Error(errMessage)
 }
 

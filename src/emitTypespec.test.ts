@@ -32,41 +32,51 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+  // await page.screenshot({ path: `vscode${+new Date()}.png` });
+
   console.log("launched")
-  await installExtensionForFile(
-    page,
-    path.resolve(__dirname, "../extension.vsix")
-  )
+  // // await installExtensionForFile(
+  // //   page,
+  // //   path.resolve(__dirname, "../extension.vsix")
+  // // )
+  await installExtension(page)
+  // await page.pause()
   console.log("installed extension")
 
   // await installExtension(page)
-  // await start(page, {
-  //   folderName: "EmitTypespecProject",
-  //   command: "Emit from Typespec",
-  // })
+  await start(page, {
+    folderName: "EmitTypespecProject",
+    command: "Emit from Typespec",
+  })
+  console.log('start');
+  
   // // await emitSelectProject(page, "TextTranslation")
   // await screenShot.screenShot("emitter_list.png")
 
-  // await page
-  //   .getByRole("option", { name: "Choose another emitter" })
-  //   .locator("a")
-  //   .click()
-  // await emitSelectType(page, "OpenAPI Document")
+  await page
+    .getByRole("option", { name: "Choose another emitter" })
+    .locator("a")
+    .click()
+  console.log("choose")
+  await emitSelectType(page, "OpenAPI Document")
+  console.log("select type")
 
-  // await emitSelectLanguageForOpenapi(page)
-
-  // await preContrastResult(
-  //   page,
-  //   "OpenAPI3...Succeeded",
-  //   "Failed to emit project Successful",
-  //   [10, 3]
-  // )
+  await emitSelectLanguageForOpenapi(page)
+  console.log("select language");
+  
+  await preContrastResult(
+    page,
+    "OpenAPI3...Succeeded",
+    "Failed to emit project Successful",
+    [10, 3]
+  )
   // await closeVscode()
+  console.log("result");
 
-  // await contrastResult(
-  //   ["openapi.3.0.yaml"],
-  //   path.resolve(workspacePath, "./tsp-output/@typespec/openapi3")
-  // )
+  await contrastResult(
+    ["openapi.3.0.yaml"],
+    path.resolve(workspacePath, "./tsp-output/@typespec/openapi3")
+  )
 })
 
 // test("EmitTypespec-OpenAPI Document 2", async ({ launch }) => {

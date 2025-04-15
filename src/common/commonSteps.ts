@@ -20,6 +20,8 @@ async function preContrastResult(
     count,
     async () => {
       const contrastResult = page.getByText(new RegExp(text)).first()
+      console.log('正在检查', +new Date());
+      
       return (await contrastResult.count()) > 0
     },
     errorMessage,
@@ -57,7 +59,7 @@ async function start(
   { folderName, command }: { folderName: string; command: string }
 ) {
   await page.locator("li").filter({ hasText: folderName }).first().click()
-  await screenShot.screenShot("open_top_panel.png")
+  // await screenShot.screenShot("open_top_panel.png")
   await page
     .getByRole("textbox", { name: "input" })
     .first()
@@ -74,7 +76,7 @@ async function start(
     },
     "Failed to find the specified option"
   )
-  await screenShot.screenShot("input_command.png")
+  // await screenShot.screenShot("input_command.png")
   await listForCreate!.click()
 }
 
@@ -130,7 +132,7 @@ async function installExtension(page: Page) {
     .getByRole("button", { name: "Install" })
     .click()
   await page.getByRole("button", { name: "Trust Publisher & Install" }).click()
-  await sleep(10)
+  await sleep(20)
   await page
     .getByRole("tab", { name: /Explorer/ })
     .locator("a")
@@ -143,14 +145,22 @@ async function installExtension(page: Page) {
  * @param fullFilePath The absolute address of the plugin `vsix` needs to be obtained using the path.resolve method
  */
 async function installExtensionForFile(page: Page, fullFilePath: string) {
-  await screenShot.screenShot("open_vscode.png")
-
+  // await screenShot.screenShot("open_vscode.png")
+  console.log('进入1');
+  
   await page
     .getByRole("tab", { name: /Extensions/ })
     .locator("a")
     .click()
-
-  await screenShot.screenShot("change_extension.png")
+  console.log(
+    page
+    .getByRole("tab", { name: /Extensions/ })
+    .locator("a")
+  );
+  
+  console.log('111');
+  
+  // await screenShot.screenShot("change_extension.png")
   let moreItem: Locator
   await retry(
     10,
@@ -162,7 +172,8 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     1
   )
   await moreItem!.click()
-  await screenShot.screenShot("more_item.png")
+  console.log("2222")
+  // await screenShot.screenShot("more_item.png")
   let fromInstall: Locator
   await retry(
     10,
@@ -174,7 +185,8 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     1
   )
   await fromInstall!.click()
-  await selectFolder(fullFilePath)
+  console.log(333)
+  // await selectFolder(fullFilePath)
   await retry(
     30,
     async () => {
@@ -184,13 +196,15 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     "Failed to find installed status",
     1
   )
-  await screenShot.screenShot("extension_installed.png")
+  // await screenShot.screenShot("extension_installed.png")
   await sleep(5)
   await page
     .getByRole("tab", { name: /Explorer/ })
     .locator("a")
     .click()
-  await screenShot.screenShot("change_explorer.png")
+    console.log(333)
+  
+  // await screenShot.screenShot("change_explorer.png")
 }
 
 async function closeVscode() {
