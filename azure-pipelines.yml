@@ -12,8 +12,13 @@ jobs:
         inputs:
           versionSpec: "20.18.3"
         displayName: "Install Node.js"
+      - script: |
+          echo "=== Ubuntu Version Info ==="
+          uname -a
+          cat /etc/os-release
+        displayName: "🔍 查看 Ubuntu 系统版本"
 
-      - bash: |
+      - script: |
           sudo apt-get update
           sudo apt-get install -y \
             libgtk-3-0 libxss1 libasound2 libnss3 libx11-xcb1 \
@@ -22,19 +27,19 @@ jobs:
             xvfb
         displayName: "Install Linux Dependencies"
 
-      - bash: |
+      - script: |
           export DISPLAY=:99
           /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
           echo ">>> Started xvfb"
         displayName: "Start xvfb and Set DISPLAY"
 
-      - bash: |
+      - script: |
           npm install
 
           node -e "require('@vscode/test-electron').download().then(p => console.log('##vso[task.setvariable variable=VSCODE_E2E_DOWNLOAD_PATH]' + p))"
         displayName: "Install deps and download VSCode"
 
-      - bash: |
+      - script: |
           export DISPLAY=:99
           export VSCODE_E2E_DOWNLOAD_PATH=$(VSCODE_E2E_DOWNLOAD_PATH)
 
@@ -47,7 +52,7 @@ jobs:
           ELECTRON_DISABLE_SANDBOX: "1"
           BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
         continueOnError: true
-      - bash: |
+      - script: |
           ls
         displayName: "List artifacts"
 

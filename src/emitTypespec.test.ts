@@ -44,7 +44,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   //   path.resolve(__dirname, "../extension.vsix")
   // )
   await installExtension(page)
-  // await page.pause()
+  await page.pause()
   console.log("installed extension")
   
   await start(page, {
