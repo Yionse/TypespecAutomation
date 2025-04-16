@@ -20,8 +20,6 @@ async function preContrastResult(
     count,
     async () => {
       const contrastResult = page.getByText(new RegExp(text)).first()
-      console.log('正在检查', +new Date());
-      
       return (await contrastResult.count()) > 0
     },
     errorMessage,
