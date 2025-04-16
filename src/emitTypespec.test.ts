@@ -38,21 +38,20 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     }/vscode${+new Date()}.png`
   })
 
-  console.log("launched")
-  await installExtensionForFile(
-    page,
-    path.resolve(__dirname, "../extension.vsix")
-  )
-  // await installExtension(page)
+  console.log("launched vscode")
+  // await installExtensionForFile(
+  //   page,
+  //   path.resolve(__dirname, "../extension.vsix")
+  // )
+  await installExtension(page)
   // await page.pause()
   console.log("installed extension")
-
-  // await installExtension(page)
+  
   await start(page, {
     folderName: "EmitTypespecProject",
     command: "Emit from Typespec"
   })
-  console.log("start")
+  console.log("start test case")
 
   // // await emitSelectProject(page, "TextTranslation")
   // await screenShot.screenShot("emitter_list.png")
@@ -61,9 +60,9 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .getByRole("option", { name: "Choose another emitter" })
     .locator("a")
     .click()
-  console.log("choose")
+  console.log("Choose another emitter")
   await emitSelectType(page, "OpenAPI Document")
-  console.log("select type")
+  console.log("select emit type")
 
   await emitSelectLanguageForOpenapi(page)
   console.log("select language")
