@@ -7,6 +7,8 @@ import { retry, screenShot } from "./utils"
  * @param emitters The emitters that need to be selected. If you need to select all, just do not transmit them.
  */
 async function selectEmitters(page: Page, emitters: string[]) {
+  console.log("selected emitters")
+
   await screenShot.screenShot("select_emitter.png")
   await page.keyboard.press("Enter")
 }
@@ -26,6 +28,8 @@ async function selectTemplate(page: Page, templateName: string) {
     },
     `Failed to find ${templateName} template`
   )
+  console.log("select folder")
+
   await templateList!.first().click()
 }
 
@@ -42,6 +46,8 @@ async function inputProjectName(page: Page) {
     },
     "Failed to find the project name input box"
   )
+  console.log("input project name")
+
   await screenShot.screenShot("input_project_name.png")
   await page.keyboard.press("Enter")
 }

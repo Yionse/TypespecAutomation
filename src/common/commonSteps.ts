@@ -56,8 +56,12 @@ async function start(
   page: Page,
   { folderName, command }: { folderName: string; command: string }
 ) {
+  console.log("start")
+
   await page.locator("li").filter({ hasText: folderName }).first().click()
   // await screenShot.screenShot("open_top_panel.png")
+  console.log("top input")
+
   await page
     .getByRole("textbox", { name: "input" })
     .first()
@@ -90,6 +94,8 @@ async function selectFolder(file: string = "") {
     }
     await keyboard.type(file)
   }
+  console.log("selected folder")
+
   await screenShot.screenShot("select_folder.png")
   await keyboard.pressKey(Key.Enter)
 }
@@ -120,11 +126,17 @@ async function notEmptyFolderContinue(page: Page) {
  * @param page vscode object
  */
 async function installExtension(page: Page) {
+  console.log("start install extension")
+
   await page
     .getByRole("tab", { name: /Extensions/ })
     .locator("a")
     .click()
+  console.log("change extension")
+
   await page.keyboard.type("Typespec")
+  console.log("input")
+
   await page
     .getByLabel(/TypeSpec/)
     .getByRole("button", { name: "Install" })
@@ -135,6 +147,7 @@ async function installExtension(page: Page) {
     .getByRole("tab", { name: /Explorer/ })
     .locator("a")
     .click()
+  console.log("installed")
 }
 
 /**
@@ -144,20 +157,16 @@ async function installExtension(page: Page) {
  */
 async function installExtensionForFile(page: Page, fullFilePath: string) {
   // await screenShot.screenShot("open_vscode.png")
-  console.log('进入1');
-  
+  console.log("进入1")
+
   await page
     .getByRole("tab", { name: /Extensions/ })
     .locator("a")
     .click()
-  console.log(
-    page
-    .getByRole("tab", { name: /Extensions/ })
-    .locator("a")
-  );
-  
-  console.log('111');
-  
+  console.log(page.getByRole("tab", { name: /Extensions/ }).locator("a"))
+
+  console.log("111")
+
   // await screenShot.screenShot("change_extension.png")
   let moreItem: Locator
   await retry(
@@ -200,8 +209,8 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
     .getByRole("tab", { name: /Explorer/ })
     .locator("a")
     .click()
-    console.log(333)
-  
+  console.log(333)
+
   // await screenShot.screenShot("change_explorer.png")
 }
 
