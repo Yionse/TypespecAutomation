@@ -28,7 +28,7 @@ async function selectTemplate(page: Page, templateName: string) {
     },
     `Failed to find ${templateName} template`
   )
-  console.log("select folder")
+  console.log("select template")
 
   await templateList!.first().click()
 }
