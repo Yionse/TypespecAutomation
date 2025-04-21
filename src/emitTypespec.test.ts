@@ -5,7 +5,7 @@ import {
   installExtension,
   installExtensionForFile,
   preContrastResult,
-  start
+  start,
 } from "./common/commonSteps"
 import { emitSelectLanguageForOpenapi, emitSelectType } from "./common/emiSteps"
 import { screenShot, test } from "./common/utils"
@@ -30,13 +30,13 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   screenShot.setDir("EmitTypespec-OpenAPI Document")
   const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
-    workspacePath
+    workspacePath,
   })
-  await page.screenshot({
-    path: `${
-      process.env.BUILD_ARTIFACT_STAGING_DIRECTORY
-    }/vscode${+new Date()}.png`
-  })
+  // await page.screenshot({
+  //   path: `${
+  //     process.env.BUILD_ARTIFACT_STAGING_DIRECTORY
+  //   }/vscode${+new Date()}.png`,
+  // })
 
   console.log("launched vscode")
   // await installExtensionForFile(
@@ -44,12 +44,11 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   //   path.resolve(__dirname, "../extension.vsix")
   // )
   await installExtension(page)
-  await page.pause()
   console.log("installed extension")
-  
+
   await start(page, {
     folderName: "EmitTypespecProject",
-    command: "Emit from Typespec"
+    command: "Emit from Typespec",
   })
   console.log("start test case")
 
