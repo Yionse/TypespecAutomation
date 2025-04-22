@@ -1,5 +1,5 @@
 import { Page } from "playwright"
-import { retry, screenShot } from "./utils"
+import { retry, screenShot, sleep } from "./utils"
 
 /**
  * When creating, select emitters
@@ -7,8 +7,6 @@ import { retry, screenShot } from "./utils"
  * @param emitters The emitters that need to be selected. If you need to select all, just do not transmit them.
  */
 async function selectEmitters(page: Page, emitters: string[]) {
-  console.log("selected emitters")
-
   await screenShot.screenShot("select_emitter.png")
   await page.keyboard.press("Enter")
 }
@@ -19,6 +17,7 @@ async function selectEmitters(page: Page, emitters: string[]) {
  * @param templateName The name of the template that needs to be selected.
  */
 async function selectTemplate(page: Page, templateName: string) {
+  await sleep(5)
   let templateList
   await retry(
     3,
@@ -28,8 +27,6 @@ async function selectTemplate(page: Page, templateName: string) {
     },
     `Failed to find ${templateName} template`
   )
-  console.log("select template")
-
   await templateList!.first().click()
 }
 
@@ -46,8 +43,6 @@ async function inputProjectName(page: Page) {
     },
     "Failed to find the project name input box"
   )
-  console.log("input project name")
-
   await screenShot.screenShot("input_project_name.png")
   await page.keyboard.press("Enter")
 }

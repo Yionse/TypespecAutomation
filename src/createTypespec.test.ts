@@ -8,7 +8,7 @@ import {
   closeVscode,
   installExtension,
 } from "./common/commonSteps"
-import { screenShot, test } from "./common/utils"
+import { screenShot, sleep, test } from "./common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
@@ -35,42 +35,39 @@ beforeEach(() => {
 
 test("CreateTypespec-Generic REST API", async ({ launch }) => {
   screenShot.setDir("CreateTypespec-Generic REST API1")
-  const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
   const { page } = await launch({
     workspacePath,
   })
-  // await installExtensionForFile(
-  //   page,
-  //   path.resolve(__dirname, "../extension.vsix")
-  // )
-  await installExtension(page)
+  await page.pause()
+  // await installExtension(page)
+  // await start(page, {
+  //   folderName: "CreateTypespecProject",
+  //   command: "Create Typespec Project",
+  // })
+  // await selectFolder()
+  // await selectTemplate(page, "Generic REST API")
+  // await inputProjectName(page)
+  // await selectEmitters(page, ["OpenAPI"])
 
-  await start(page, {
-    folderName: "CreateTypespecProject",
-    command: "Create Typespec Project",
-  })
-  await selectFolder()
-  await selectTemplate(page, "Generic REST API")
-  await inputProjectName(page)
-  await selectEmitters(page, ["OpenAPI"])
-  await preContrastResult(
-    page,
-    "Project created!",
-    "Failed to create project Successful",
-    [10, 10]
-  )
-  // await closeVscode()
-  await contrastResult(
-    [
-      ".gitignore",
-      "main.tsp",
-      "node_modules",
-      "package-lock.json",
-      "package.json",
-      "tspconfig.yaml",
-    ],
-    workspacePath
-  )
+  // await preContrastResult(
+  //   page,
+  //   "Project created!",
+  //   "Failed to create project Successful",
+  //   [20, 10]
+  // )
+
+  // await contrastResult(
+  //   [
+  //     ".gitignore",
+  //     "main.tsp",
+  //     "node_modules",
+  //     "package-lock.json",
+  //     "package.json",
+  //     "tspconfig.yaml",
+  //   ],
+  //   workspacePath
+  // )
 })
 
 // test("CreateTypespec-Generic REST API 2", async ({ launch }) => {

@@ -56,16 +56,15 @@ async function start(
   page: Page,
   { folderName, command }: { folderName: string; command: string }
 ) {
-  console.log("start")
-
-  await page.locator("li").filter({ hasText: folderName }).first().click()
+  // await page.locator("li").filter({ hasText: "Typespec" }).first().click()
   // await screenShot.screenShot("open_top_panel.png")
-  console.log("top input")
+  // await page
+  //   .getByRole("textbox", { name: "input" })
+  //   .first()
+  //   .fill(`>Typespec: ${command}`)
+  await page.keyboard.press("Control+Shift+P")
+  await page.keyboard.type(`>Typespec: ${command}`)
 
-  await page
-    .getByRole("textbox", { name: "input" })
-    .first()
-    .fill(`>Typespec: ${command}`)
   let listForCreate: Locator
   await retry(
     5,
@@ -88,16 +87,15 @@ async function start(
  */
 async function selectFolder(file: string = "") {
   await sleep(10)
-  if (file) {
-    if (!process.env.CI) {
-      await keyboard.pressKey(Key.CapsLock)
-    }
-    await keyboard.type(file)
-  }
-  console.log("selected folder")
-
-  await screenShot.screenShot("select_folder.png")
+  // if (file) {
+  //   if (!process.env.CI) {
+  //     await keyboard.pressKey(Key.CapsLock)
+  //   }
+  //   await keyboard.type(file)
+  // }
+  // await screenShot.screenShot("select_folder.png")
   await keyboard.pressKey(Key.Enter)
+  await keyboard.releaseKey(Key.Enter)
 }
 
 /**
@@ -126,28 +124,24 @@ async function notEmptyFolderContinue(page: Page) {
  * @param page vscode object
  */
 async function installExtension(page: Page) {
-  console.log("start install extension")
-
   await page
     .getByRole("tab", { name: /Extensions/ })
     .locator("a")
     .click()
-  console.log("change extension")
 
   await page.keyboard.type("Typespec")
-  console.log("input")
 
   await page
     .getByLabel(/TypeSpec/)
     .getByRole("button", { name: "Install" })
     .click()
+  await sleep(10)
   await page.getByRole("button", { name: "Trust Publisher & Install" }).click()
   await sleep(20)
   await page
     .getByRole("tab", { name: /Explorer/ })
     .locator("a")
     .click()
-  console.log("installed")
 }
 
 /**

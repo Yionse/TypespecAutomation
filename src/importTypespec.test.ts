@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach } from "vitest"
-import { screenShot, test } from "./common/utils"
+import { screenShot, sleep, test } from "./common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
@@ -66,9 +66,9 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     page,
     "OpenAPI succeeded",
     "Failed to import project successfully",
-    [10, 3]
+    [10, 10]
   )
-  await closeVscode()
+
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
 })
 
