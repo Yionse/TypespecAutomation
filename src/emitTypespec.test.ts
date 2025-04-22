@@ -33,19 +33,27 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+
   await installExtension(page)
+  console.log("installed extension")
+
   await start(page, {
     folderName: "EmitTypespecProject",
     command: "Emit from Typespec",
   })
+  console.log("top input")
 
   await page
     .getByRole("option", { name: "Choose another emitter" })
     .locator("a")
     .click()
+  console.log("choose another emitter")
+
   await emitSelectType(page, "OpenAPI Document")
+  console.log("selected emit type")
 
   await emitSelectLanguageForOpenapi(page)
+  console.log("select language")
 
   await preContrastResult(
     page,

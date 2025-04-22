@@ -40,14 +40,25 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
     workspacePath,
   })
   await installExtension(page)
+  console.log("installed extension")
+
   await start(page, {
     folderName: "CreateTypespecProject",
     command: "Create Typespec Project",
   })
+  console.log("top input")
+
   await selectFolder()
+  console.log("selected folder")
+
   await selectTemplate(page, "Generic REST API")
+  console.log("selected template")
+
   await inputProjectName(page)
+  console.log("input projectName")
+
   await selectEmitters(page, ["OpenAPI"])
+  console.log("selected emitters")
 
   await preContrastResult(
     page,

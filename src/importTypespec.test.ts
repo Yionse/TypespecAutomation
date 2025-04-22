@@ -54,14 +54,23 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   //   path.resolve(__dirname, "../extension.vsix")
   // )
   await installExtension(page)
+  console.log("install extension")
 
   await start(page, {
     folderName: "importTypespecProjectOpenApi3",
     command: "Import TypeSpec from Openapi 3",
   })
+  console.log("top input")
+
   await selectFolder()
+  console.log("selected folder")
+
   await notEmptyFolderContinue(page)
+  console.log("yes")
+
   await selectFolder()
+  console.log("selected file")
+
   await preContrastResult(
     page,
     "OpenAPI succeeded",
