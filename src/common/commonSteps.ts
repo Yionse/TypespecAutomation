@@ -155,7 +155,7 @@ async function installExtension(page: Page, extensionDir: string) {
   console.log("enter")
 
   await cmd.fill(
-    `code --install-extension ${vsixPath} --extensions-dir ${extensionDir}`
+    `./code --install-extension ${vsixPath} --extensions-dir ${extensionDir}`
   )
   console.log("install extension")
 
