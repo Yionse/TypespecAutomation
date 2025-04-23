@@ -50,7 +50,7 @@ jobs:
           BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
         continueOnError: true
       - script: |
-          ls
+          ls /home/vsts/work/1/a
         displayName: "List artifacts"
 
       - task: PublishBuildArtifacts@1
