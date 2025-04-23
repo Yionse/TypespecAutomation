@@ -32,7 +32,7 @@ while true; do
 
   xwd -root -out "/home/vsts/work/1/a/screenshot_${timestamp}.xwd"
 
-  convert "/home/vsts/work/1/a/screenshot_${timestamp}.xwd" "screenshots/screenshot_${timestamp}.png"
+  convert "/home/vsts/work/1/a/screenshot_${timestamp}.xwd" "/home/vsts/work/1/a/screenshot_${timestamp}.png"
 
   rm "/home/vsts/work/1/a/screenshot_${timestamp}.xwd"
  
