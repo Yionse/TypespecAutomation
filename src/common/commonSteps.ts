@@ -2,6 +2,8 @@ import { Locator, Page } from "playwright"
 import { retry, screenShot, sleep } from "./utils"
 import { keyboard, Key } from "@nut-tree-fork/nut-js"
 import fs from "node:fs"
+import { inject } from "vitest"
+import path from "node:path"
 
 /**
  * Before comparing the results, you need to check whether the conditions for result comparison are met.
@@ -63,7 +65,7 @@ async function start(
   //   .first()
   //   .fill(`>Typespec: ${command}`)
   await page.keyboard.press("Control+Shift+P")
-  await page.keyboard.type(`>Typespec: ${command}`)
+  await page.keyboard.type(`Typespec: ${command}`)
 
   let listForCreate: Locator
   await retry(
@@ -87,12 +89,6 @@ async function start(
  */
 async function selectFolder(file: string = "") {
   await sleep(10)
-  // if (file) {
-  //   if (!process.env.CI) {
-  //     await keyboard.pressKey(Key.CapsLock)
-  //   }
-  //   await keyboard.type(file)
-  // }
   // await screenShot.screenShot("select_folder.png")
   await keyboard.pressKey(Key.Enter)
   await keyboard.releaseKey(Key.Enter)
@@ -123,25 +119,35 @@ async function notEmptyFolderContinue(page: Page) {
  * Install plugins directly from vscode
  * @param page vscode object
  */
-async function installExtension(page: Page) {
+async function installExtension(page: Page, extensionDir: string) {
+  const executablePath = inject("executablePath")
+  const vsixPath =
+    process.env.VSIX_PATH || path.resolve(__dirname, "../../extension.vsix")
+  await page.getByRole("menuitem", { name: "More" }).locator("div").click()
+  await page.getByRole("menuitem", { name: "Terminal", exact: true }).click()
   await page
-    .getByRole("tab", { name: /Extensions/ })
-    .locator("a")
+    .getByRole("menuitem", { name: "New Terminal Ctrl+Shift+`" })
     .click()
 
-  await page.keyboard.type("Typespec")
-
-  await page
-    .getByLabel(/TypeSpec/)
-    .getByRole("button", { name: "Install" })
-    .click()
-  await sleep(10)
-  await page.getByRole("button", { name: "Trust Publisher & Install" }).click()
-  await sleep(20)
-  await page
-    .getByRole("tab", { name: /Explorer/ })
-    .locator("a")
-    .click()
+  await retry(
+    10,
+    async () => {
+      const cmd = page.getByRole("textbox", { name: /Terminal/ }).first()
+      return (await cmd.count()) > 0
+    },
+    "Failed to find command palette",
+    3
+  )
+  const cmd = page.getByRole("textbox", { name: /Terminal/ }).first()
+  await cmd.click()
+  await cmd.fill(`cd ${path.dirname(executablePath)}`)
+  await sleep(2)
+  await page.keyboard.press("Enter")
+  await cmd.fill(
+    `code --install-extension ${vsixPath} --extensions-dir ${extensionDir}`
+  )
+  await page.keyboard.press("Enter")
+  await sleep(2)
 }
 
 /**

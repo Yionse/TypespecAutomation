@@ -1,4 +1,4 @@
-import { beforeAll, beforeEach } from "vitest"
+import { afterEach, beforeAll, beforeEach } from "vitest"
 import {
   closeVscode,
   contrastResult,
@@ -11,7 +11,6 @@ import { emitSelectLanguageForOpenapi, emitSelectType } from "./common/emiSteps"
 import { screenShot, sleep, test } from "./common/utils"
 import path from "node:path"
 import fs from "node:fs"
-import { slash } from "vitest/utils.js"
 
 beforeAll(() => {
   screenShot.setCreateType("emit")
@@ -30,11 +29,11 @@ beforeEach(() => {
 test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   screenShot.setDir("EmitTypespec-OpenAPI Document")
   const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
-  const { page } = await launch({
+  const { page, extensionDir } = await launch({
     workspacePath,
   })
 
-  await installExtension(page)
+  await installExtension(page, extensionDir)
   console.log("installed extension")
 
   await start(page, {

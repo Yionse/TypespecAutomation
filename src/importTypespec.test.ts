@@ -1,4 +1,4 @@
-import { beforeAll, beforeEach } from "vitest"
+import { afterEach, beforeAll, beforeEach } from "vitest"
 import { screenShot, sleep, test } from "./common/utils"
 import fs from "node:fs"
 import path from "node:path"
@@ -46,19 +46,19 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     __dirname,
     "../importTypespecProjectOpenApi3"
   )
-  const { page } = await launch({
+  const { page, extensionDir } = await launch({
     workspacePath,
   })
   // await installExtensionForFile(
   //   page,
   //   path.resolve(__dirname, "../extension.vsix")
   // )
-  await installExtension(page)
+  await installExtension(page, extensionDir)
   console.log("install extension")
 
   await start(page, {
     folderName: "importTypespecProjectOpenApi3",
-    command: "Import TypeSpec from Openapi 3",
+    command: "Import TypeSpec from Openapi3",
   })
   console.log("top input")
 

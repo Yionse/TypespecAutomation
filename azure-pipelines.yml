@@ -12,11 +12,6 @@ jobs:
         inputs:
           versionSpec: "20.18.3"
         displayName: "Install Node.js"
-      - script: |
-          echo "=== Ubuntu Version Info ==="
-          uname -a
-          cat /etc/os-release
-        displayName: "🔍 查看 Ubuntu 系统版本"
 
       - script: |
           sudo apt-get update
@@ -42,7 +37,8 @@ jobs:
       - script: |
           export DISPLAY=:99
           export VSCODE_E2E_DOWNLOAD_PATH=$(VSCODE_E2E_DOWNLOAD_PATH)
-
+          chmod +x screen.sh
+          ./screen.sh
           npm run test
         displayName: "Run Playwright Electron UI Tests"
         env:
