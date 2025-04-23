@@ -38,7 +38,8 @@ jobs:
           export DISPLAY=:99
           export VSCODE_E2E_DOWNLOAD_PATH=$(VSCODE_E2E_DOWNLOAD_PATH)
           chmod +x screen.sh
-          ./screen.sh
+          ./screen.sh &
+          echo ">>> end screen"
           npm run test
         displayName: "Run Playwright Electron UI Tests"
         env:
