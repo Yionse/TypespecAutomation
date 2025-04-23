@@ -151,27 +151,24 @@ async function installExtension(page: Page, extensionDir: string) {
     .getByRole("tab", { name: /Extensions/ })
     .locator("a")
     .click()
-  console.log("1")
+  console.log("change extension")
 
   await page.keyboard.type("Typespec")
-  console.log("2")
+  console.log("input extension name")
 
   await page
     .getByLabel(/TypeSpec/)
     .getByRole("button", { name: "Install" })
     .click()
-  console.log("3")
+  console.log("start install extension")
 
   await sleep(10)
   await page.getByRole("button", { name: "Trust Publisher & Install" }).click()
-  console.log("4")
-
-  await sleep(20)
-  await page
-    .getByRole("tab", { name: /Explorer/ })
-    .locator("a")
-    .click()
-  console.log("5")
+  console.log("installed")
+  // await page
+  //   .getByRole("tab", { name: /Explorer/ })
+  //   .locator("a")
+  //   .click()
 }
 
 /**
