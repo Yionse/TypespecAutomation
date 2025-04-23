@@ -120,56 +120,64 @@ async function notEmptyFolderContinue(page: Page) {
  * @param page vscode object
  */
 async function installExtension(page: Page, extensionDir: string) {
-  // const executablePath = inject("executablePath")
-  // const vsixPath =
-  //   process.env.VSIX_PATH || path.resolve(__dirname, "../../extension.vsix")
-  // await page.getByRole("menuitem", { name: "More" }).locator("div").click()
-  // await page.getByRole("menuitem", { name: "Terminal", exact: true }).click()
-  // await page
-  //   .getByRole("menuitem", { name: "New Terminal Ctrl+Shift+`" })
-  //   .click()
-  // await retry(
-  //   10,
-  //   async () => {
-  //     const cmd = page.getByRole("textbox", { name: /Terminal/ }).first()
-  //     return (await cmd.count()) > 0
-  //   },
-  //   "Failed to find command palette",
-  //   3
-  // )
-  // const cmd = page.getByRole("textbox", { name: /Terminal/ }).first()
-  // await cmd.click()
-  // await cmd.fill(`cd ${path.dirname(executablePath)}`)
-  // await sleep(2)
-  // await page.keyboard.press("Enter")
-  // await cmd.fill(
-  //   `code --install-extension ${vsixPath} --extensions-dir ${extensionDir}`
-  // )
-  // await page.keyboard.press("Enter")
-  // await sleep(2)
+  const executablePath = inject("executablePath")
+  const vsixPath =
+    process.env.VSIX_PATH || path.resolve(__dirname, "../../extension.vsix")
+  await page.getByRole("menuitem", { name: "More" }).locator("div").click()
+  console.log('click menuitem1');
+  await page.getByRole("menuitem", { name: "Terminal", exact: true }).click()
+  console.log('click menuitem2');
   await page
-    .getByRole("tab", { name: /Extensions/ })
-    .locator("a")
+    .getByRole("menuitem", { name: "New Terminal Ctrl+Shift+`" })
     .click()
-  console.log("change extension")
-
-  await page.keyboard.type("Typespec")
-  console.log("input extension name")
-
-  await page
-    .getByLabel(/TypeSpec/)
-    .getByRole("button", { name: "Install" })
-    .click()
-  console.log("start install extension")
-
-  await sleep(10)
-  await page.getByRole("button", { name: "Trust Publisher & Install" }).click()
-  console.log("installed")
-  await sleep(20)
+    console.log('click menuitem3');
+    
+  await retry(
+    10,
+    async () => {
+      const cmd = page.getByRole("textbox", { name: /Terminal/ }).first()
+      return (await cmd.count()) > 0
+    },
+    "Failed to find command palette",
+    3
+  )
+  console.log('open terminal');
+  
+  const cmd = page.getByRole("textbox", { name: /Terminal/ }).first()
+  await cmd.click()
+  console.log('terminal click');
+  
+  await cmd.fill(`cd ${path.dirname(executablePath)}`)
+  console.log('change path');
+  
+  await sleep(2)
+  await page.keyboard.press("Enter")
+  console.log('enter');
+  
+  await cmd.fill(
+    `code --install-extension ${vsixPath} --extensions-dir ${extensionDir}`
+  )
+  console.log('install extension');
+  
+  await page.keyboard.press("Enter")
+  await sleep(2)
+  // releases
   // await page
-  //   .getByRole("tab", { name: /Explorer/ })
+  //   .getByRole("tab", { name: /Extensions/ })
   //   .locator("a")
   //   .click()
+  // console.log("change extension")
+  // await page.keyboard.type("Typespec")
+  // console.log("input extension name")
+  // await page
+  //   .getByLabel(/TypeSpec/)
+  //   .getByRole("button", { name: "Install" })
+  //   .click()
+  // console.log("start install extension")
+  // await sleep(10)
+  // await page.getByRole("button", { name: "Trust Publisher & Install" }).click()
+  // console.log("installed")
+  // await sleep(20)
 }
 
 /**
