@@ -161,9 +161,7 @@ async function installExtension(page: Page, extensionDir: string) {
   await page.keyboard.press("Enter")
   console.log("enter")
 
-  await cmd.fill(
-    `xvfb-run ./code --install-extension ${vsixPath} --extensions-dir ${extensionDir} --no-sandbox`
-  )
+  await cmd.fill(`code --install-extension ${vsixPath}`)
   console.log("install extension")
 
   await page.keyboard.press("Enter")
