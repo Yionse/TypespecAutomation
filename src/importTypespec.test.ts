@@ -44,7 +44,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   screenShot.setDir("ImportTypespecFromOpenApi3")
   const workspacePath = path.resolve(
     __dirname,
-    "../importTypespecProjectOpenApi3"
+    "../ImportTypespecProjectOpenApi3"
   )
   const { page, extensionDir } = await launch({
     workspacePath,
