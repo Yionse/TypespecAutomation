@@ -28,7 +28,7 @@ while true; do
 
   rm "/home/vsts/work/1/a/screenshot_${timestamp}.xwd"
  
-  sleep 5
+  sleep 2
 
 done
  
