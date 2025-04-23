@@ -120,7 +120,13 @@ async function notEmptyFolderContinue(page: Page) {
  * @param page vscode object
  */
 async function installExtension(page: Page, extensionDir: string) {
-  await page.keyboard.press("Control+B")
+  await sleep(10)
+  await page
+    .getByRole("tab", { name: /Explorer/ })
+    .locator("a")
+    .click()
+  console.log("click extension")
+
   const executablePath = inject("executablePath")
   const vsixPath =
     process.env.VSIX_PATH || path.resolve(__dirname, "../../extension.vsix")
