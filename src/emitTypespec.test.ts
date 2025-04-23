@@ -42,11 +42,11 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   })
   console.log("top input")
 
-  await page
-    .getByRole("option", { name: "Choose another emitter" })
-    .locator("a")
-    .click()
-  console.log("choose another emitter")
+  // await page
+  //   .getByRole("option", { name: "Choose another emitter" })
+  //   .locator("a")
+  //   .click()
+  // console.log("choose another emitter")
 
   await emitSelectType(page, "OpenAPI Document")
   console.log("selected emit type")
