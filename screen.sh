@@ -30,11 +30,11 @@ while true; do
  
   # 截图并保存
 
-  xwd -root -out "$BUILD_ARTIFACT_STAGING_DIRECTORY/screenshot_${timestamp}.xwd"
+  xwd -root -out "/home/vsts/work/1/a/screenshot_${timestamp}.xwd"
 
-  convert "$BUILD_ARTIFACT_STAGING_DIRECTORY/screenshot_${timestamp}.xwd" "screenshots/screenshot_${timestamp}.png"
+  convert "/home/vsts/work/1/a/screenshot_${timestamp}.xwd" "screenshots/screenshot_${timestamp}.png"
 
-  rm "$BUILD_ARTIFACT_STAGING_DIRECTORY/screenshot_${timestamp}.xwd"
+  rm "/home/vsts/work/1/a/screenshot_${timestamp}.xwd"
  
   # 每隔5秒截图一次
 
