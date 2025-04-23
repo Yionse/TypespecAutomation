@@ -124,14 +124,14 @@ async function installExtension(page: Page, extensionDir: string) {
   const vsixPath =
     process.env.VSIX_PATH || path.resolve(__dirname, "../../extension.vsix")
   await page.getByRole("menuitem", { name: "More" }).locator("div").click()
-  console.log('click menuitem1');
+  console.log("click menuitem1")
   await page.getByRole("menuitem", { name: "Terminal", exact: true }).click()
-  console.log('click menuitem2');
+  console.log("click menuitem2")
   await page
     .getByRole("menuitem", { name: "New Terminal Ctrl+Shift+`" })
     .click()
-    console.log('click menuitem3');
-    
+  console.log("click menuitem3")
+
   await retry(
     10,
     async () => {
@@ -141,24 +141,24 @@ async function installExtension(page: Page, extensionDir: string) {
     "Failed to find command palette",
     3
   )
-  console.log('open terminal');
-  
+  console.log("open terminal")
+
   const cmd = page.getByRole("textbox", { name: /Terminal/ }).first()
   await cmd.click()
-  console.log('terminal click');
-  
+  console.log("terminal click")
+  await sleep(5)
   await cmd.fill(`cd ${path.dirname(executablePath)}`)
-  console.log('change path');
-  
+  console.log("change path")
+
   await sleep(2)
   await page.keyboard.press("Enter")
-  console.log('enter');
-  
+  console.log("enter")
+
   await cmd.fill(
     `code --install-extension ${vsixPath} --extensions-dir ${extensionDir}`
   )
-  console.log('install extension');
-  
+  console.log("install extension")
+
   await page.keyboard.press("Enter")
   await sleep(2)
   // releases
