@@ -165,6 +165,7 @@ async function installExtension(page: Page, extensionDir: string) {
   await sleep(10)
   await page.getByRole("button", { name: "Trust Publisher & Install" }).click()
   console.log("installed")
+  await sleep(20)
   // await page
   //   .getByRole("tab", { name: /Explorer/ })
   //   .locator("a")
