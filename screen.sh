@@ -1,5 +1,5 @@
 #!/bin/bash
- 
+# linux暂时不调查，后续截图使用该脚本，传入对应的参数即可
 echo "Artifact directory: $BUILD_ARTIFACT_STAGING_DIRECTORY"
 mkdir -p screenshots
  
