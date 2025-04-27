@@ -12,7 +12,7 @@ jobs:
       vmImage: "windows-latest"
     steps:
       - script: |
-          echo "Downloading artifact using System.AccessToken"
+          echo "Downloading artifact using $(System.AccessToken)"
           curl -u :$(System.AccessToken) -L "https://artprodcus3.artifacts.visualstudio.com/your-org/your-project/_apis/artifact/your-artifact-id?format=zip" -o extension.zip
           echo "Check file type:"
           file extension.zip || powershell -Command "Get-Item extension.zip | Format-List"
