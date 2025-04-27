@@ -24,12 +24,6 @@ jobs:
         inputs:
           versionSpec: "20.18.3"
         displayName: "Install Node.js"
-
-      - script: |
-          echo "Downloading extension from $EXTENSIONLINK"
-          curl -o extension.vsix $EXTENSIONLINK
-        displayName: "Download Extension"
-
       - script: |
           npm install
         displayName: "Install dependencies"
