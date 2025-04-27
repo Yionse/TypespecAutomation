@@ -6,14 +6,23 @@ parameters:
     displayName: Plugins to testLink
     type: string
 
-variables:
-  - group: Azure SDK Auto Release Pipeline Secrets
+permissions:
+  - system:AccessToken: "Allow"
 
 jobs:
   - job: RunWindowsTests
     pool:
       vmImage: "windows-latest"
     steps:
+      - script: |
+          echo "Downloading extension using Azure DevOps token"
+          curl -L -o extension.zip \
+            -u $(System.AccessToken): \
+            "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/590cfd2a-581c-4dcb-a12e-6568ce786175/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvNTkwY2ZkMmEtNTgxYy00ZGNiLWExMmUtNjU2OGNlNzg2MTc1L2J1aWxkSWQvNDc2ODI3OS9hcnRpZmFjdE5hbWUvdnNjb2RlLWV4dGVuc2lvbg2/content?format=zip"
+        displayName: "Download Extension"
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+
       - task: NodeTool@0
         inputs:
           versionSpec: "20.18.3"
