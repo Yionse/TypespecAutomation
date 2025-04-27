@@ -11,15 +11,10 @@ jobs:
     pool:
       vmImage: "windows-latest"
     steps:
-      - script: |
-          echo "Downloading extension from ${{ parameters.ARTIFACTS_URL }}"
-          echo ${{ parameters.ARTIFACTS_URL }}
-          curl -o extension.zip ${{ parameters.ARTIFACTS_URL }}
-          echo "Check file type:"
-          file extension.zip || powershell -Command "Get-Item extension.zip | Format-List"
-          echo 'ls'
-          ls
-        displayName: "Download Extension"
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          artifact: "vscode-extension"
+          path: "$(Build.SourcesDirectory)/extension-download"
       - task: NodeTool@0
         inputs:
           versionSpec: "20.18.3"
