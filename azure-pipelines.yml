@@ -13,6 +13,7 @@ jobs:
     steps:
       - script: |
           echo "Downloading extension from ${{ parameters.ARTIFACTS_URL }}"
+          echo ${{ parameters.ARTIFACTS_URL }}
           curl -o extension.zip ${{ parameters.ARTIFACTS_URL }}
           echo "Check file type:"
           file extension.zip || powershell -Command "Get-Item extension.zip | Format-List"
