@@ -1,6 +1,11 @@
 trigger:
   - master
-  - test/pipeline
+
+parameters:
+  - name: ARTIFACTS-URL
+    displayName: Plugins to testLink
+    type: string
+
 jobs:
   - job: RunWindowsTests
     pool:
@@ -10,6 +15,11 @@ jobs:
         inputs:
           versionSpec: "20.18.3"
         displayName: "Install Node.js"
+
+      - script: |
+          echo "Downloading extension from $EXTENSIONLINK"
+          curl -o extension.vsix $EXTENSIONLINK
+        displayName: "Download Extension"
 
       - script: |
           npm install
